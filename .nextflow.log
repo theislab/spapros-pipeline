@@ -1,0 +1,99 @@
+Jun-27 15:27:25.346 [main] DEBUG nextflow.cli.Launcher - $> nextflow run nextflow-io/rnatoy -with-docker
+Jun-27 15:27:25.570 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.1
+Jun-27 15:27:26.890 [main] DEBUG nextflow.scm.AssetManager - Git config: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/.git/config; branch: master; remote: origin; url: https://github.com/nextflow-io/rnatoy.git
+Jun-27 15:27:26.919 [main] DEBUG nextflow.scm.AssetManager - Git config: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/.git/config; branch: master; remote: origin; url: https://github.com/nextflow-io/rnatoy.git
+Jun-27 15:27:27.052 [main] INFO  nextflow.cli.CmdRun - Launching `nextflow-io/rnatoy` [gloomy_goldwasser] - revision: 5ec6d657cc [master]
+Jun-27 15:27:27.620 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/nextflow.config
+Jun-27 15:27:27.620 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
+Jun-27 15:27:27.621 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/nextflow.config
+Jun-27 15:27:27.621 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
+Jun-27 15:27:27.636 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jun-27 15:27:27.699 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jun-27 15:27:28.465 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-27 15:27:28.467 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-27 15:27:28.471 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-27 15:27:28.787 [main] DEBUG nextflow.config.ConfigBuilder - Enabling execution in Docker container as requested by cli option `-with-docker -`
+Jun-27 15:27:28.791 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/home/zeth/.nextflow/plugins
+Jun-27 15:27:28.793 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jun-27 15:27:28.793 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins local root: .nextflow/plr/empty
+Jun-27 15:27:28.797 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-27 15:27:28.797 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-27 15:27:28.800 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-27 15:27:28.810 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jun-27 15:27:28.866 [main] DEBUG nextflow.Session - Session uuid: 22a22e5c-1c4d-4153-8dd3-f5a504b7cbf8
+Jun-27 15:27:28.867 [main] DEBUG nextflow.Session - Run name: gloomy_goldwasser
+Jun-27 15:27:28.867 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-27 15:27:28.886 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 21.04.1 build 5556
+  Created: 14-05-2021 15:20 UTC (17:20 CEST)
+  System: Linux 5.12.13-arch1-2
+  Runtime: Groovy 3.0.7 on OpenJDK 64-Bit Server VM 1.8.0_152-release-1056-b12
+  Encoding: UTF-8 (ANSI_X3.4-1968)
+  Process: 97941@master [192.168.0.49]
+  CPUs: 8 - Mem: 15.3 GB (159.9 MB) - Swap: 12 GB (12 GB)
+Jun-27 15:27:28.905 [main] DEBUG nextflow.Session - Work-dir: /home/zeth/nextflow_projects/spapros-pipeline/work [ext2/ext3]
+Jun-27 15:27:28.905 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/bin
+Jun-27 15:27:28.917 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jun-27 15:27:28.932 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jun-27 15:27:29.147 [main] DEBUG nextflow.Session - Session start invoked
+Jun-27 15:27:29.152 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /home/zeth/nextflow_projects/spapros-pipeline/[:]/pipeline_info/execution_trace.txt
+Jun-27 15:27:30.144 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-27 15:27:30.168 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: mapping, makeTranscript, buildIndex
+Jun-27 15:27:30.219 [main] WARN  nextflow.Session - There's no process matching config selector: get_software_versions
+Jun-27 15:27:30.240 [main] INFO  nextflow.Nextflow - R N A T O Y   P I P E L I N E    
+=============================
+genome: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa
+annot : /home/zeth/.nextflow/assets/nextflow-io/rnatoy/data/ggal/ggal_1_48850000_49020000.bed.gff
+reads : /home/zeth/.nextflow/assets/nextflow-io/rnatoy/data/ggal/*_{1,2}.fq
+outdir: ./results
+
+Jun-27 15:27:30.320 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/data/ggal/; pattern: *_{1,2}.fq; options: [:]
+Jun-27 15:27:30.669 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-27 15:27:30.670 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-27 15:27:30.684 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jun-27 15:27:30.700 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=15.3 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Jun-27 15:27:30.976 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-27 15:27:30.979 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-27 15:27:31.076 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-27 15:27:31.076 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-27 15:27:31.094 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-27 15:27:31.096 [main] DEBUG nextflow.Session - Session await
+Jun-27 15:27:31.212 [Actor Thread 3] DEBUG nextflow.util.CacheHelper - Hash asset file sha-256: /home/zeth/.nextflow/assets/nextflow-io/rnatoy/data/ggal/ggal_1_48850000_49020000.Ggal71.500bpflank.fa
+Jun-27 15:27:31.498 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-27 15:27:31.558 [Task submitter] INFO  nextflow.Session - [86/a8052b] Submitted process > buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)
+Jun-27 15:27:32.717 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank); status: COMPLETED; exit: 127; error: -; workDir: /home/zeth/nextflow_projects/spapros-pipeline/work/86/a8052b5f9053fb588e5f36275b9b34]
+Jun-27 15:27:32.789 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)'
+
+Caused by:
+  Process `buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)` terminated with an error exit status (127)
+
+Command executed:
+
+  bowtie2-build --threads 1 ggal_1_48850000_49020000.Ggal71.500bpflank.fa genome.index
+
+Command exit status:
+  127
+
+Command output:
+  (empty)
+
+Command error:
+  .command.sh: line 2: bowtie2-build: command not found
+
+Work dir:
+  /home/zeth/nextflow_projects/spapros-pipeline/work/86/a8052b5f9053fb588e5f36275b9b34
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+Jun-27 15:27:32.835 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-27 15:27:32.885 [Task monitor] INFO  nextflow.Session - Execution cancelled -- Finishing pending tasks before exit
+Jun-27 15:27:32.926 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-27 15:27:32.933 [main] INFO  nextflow.Nextflow - Oops .. something went wrong
+Jun-27 15:27:32.958 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=1.1s; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=4 GB; ]
+Jun-27 15:27:32.959 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jun-27 15:27:32.965 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jun-27 15:27:33.051 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  [{"cpuUsage":null,"process":"buildIndex","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","maxLabel":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","q1Label":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","q2Label":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","q3Label":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":1058,"min":1058,"q1":1058,"q2":1058,"q3":1058,"max":1058,"minLabel":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","maxLabel":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","q1Label":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","q2Label":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)","q3Label":"buildIndex (ggal_1_48850000_49020000.Ggal71.500bpflank)"},"writes":null}]
+Jun-27 15:27:34.570 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jun-27 15:27:34.898 [main] WARN  nextflow.dag.GraphvizRenderer - To render the execution DAG in the required format it is required to install Graphviz -- See http://www.graphviz.org for more info.
+Jun-27 15:27:35.056 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Jun-27 15:27:35.105 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -1,0 +1,12 @@
+
+id: 'software_versions'
+section_name: 'nf-core/mhcquant Software Versions'
+section_href: 'https://github.com/nf-core/mhcquant'
+plot_type: 'html'
+description: 'are collected at run time from the software output.'
+data: |
+    <dl class="dl-horizontal">
+
+        <dt>nf-core/mhcquant</dt><dd><samp>v1.0.0</samp></dd>
+        <dt>Nextflow</dt><dd><samp>v21.04.1</samp></dd>
+    </dl>

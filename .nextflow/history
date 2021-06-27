@@ -1,0 +1,20 @@
+2021-06-27 13:17:07	-	focused_dalembert	-	0fe2f851570689b40b942b69222fa9f3	e7cdee95-96f9-4636-bb3d-fe1bbce40105	nextflow run . -profile docker
+2021-06-27 13:17:51	-	pensive_swanson	-	eb5b23a49528ef45c685667571a90c25	aee40305-76cd-42d9-8702-6da99a0ddefb	nextflow run . -profile docker
+2021-06-27 13:18:51	-	friendly_faggin	-	eb5b23a49528ef45c685667571a90c25	0806027e-2c10-4ea3-a97b-d26d76bf81f4	nextflow run . -profile docker
+2021-06-27 13:26:43	-	nostalgic_mccarthy	-	ac73fbec2c139371adf62c4e70e90224	f783210f-411c-46a4-b0bc-da880eff175a	nextflow run . -profile docker
+2021-06-27 13:27:13	-	stoic_ekeblad	-	dbbc3662232a379c73eebec2f1730664	0d124e5c-4f61-4cbc-bd34-255ac2fba42e	nextflow run . -profile docker
+2021-06-27 13:44:23	-	happy_bhaskara	-	dbbc3662232a379c73eebec2f1730664	245fa653-079e-43f7-b2ce-c035c5a822a9	nextflow run . -profile docker
+2021-06-27 13:49:37	-	modest_montalcini	-	a9139220566827913f637dc78d44a3b6	78a2a803-b008-49ff-9849-b12a74f96b49	nextflow run . -profile docker
+2021-06-27 13:54:11	5.4s	sick_majorana	ERR	e26c46ed1431c0d44633015ce2deb99f	20d6e43e-d57d-4728-a779-58cec4ed1cd4	nextflow run . -profile docker
+2021-06-27 14:08:50	5.9s	amazing_raman	ERR	e26c46ed1431c0d44633015ce2deb99f	b855d264-9828-4f68-a989-7013345d064b	nextflow run . -profile docker
+2021-06-27 14:15:19	8.5s	shrivelled_archimedes	ERR	e26c46ed1431c0d44633015ce2deb99f	258128bf-fc83-4912-8c80-17ae87a6742c	nextflow run . -profile docker
+2021-06-27 14:20:38	5.9s	backstabbing_nobel	ERR	c0ca2f7576b02efaa849cace4745c55f	eb55eed6-d3b8-462d-95f6-5e77eae212e0	nextflow run . -profile docker
+2021-06-27 14:27:19	8.5s	mad_jang	ERR	e26c46ed1431c0d44633015ce2deb99f	4d71a3ab-481c-4502-a48a-4dc4e556cfef	nextflow run . -profile docker
+2021-06-27 14:38:51	6.4s	desperate_boyd	ERR	c42c4047d6d835d04f80584d5edd8f68	61694d97-f3d0-4d25-9635-d14fe2728bf9	nextflow run . -with-docker
+2021-06-27 14:40:40	4.2s	prickly_becquerel	ERR	c42c4047d6d835d04f80584d5edd8f68	84df21ef-010a-4a45-a94d-373abce9b7e0	nextflow run . -with-docker 'theislab/spapros:1.0.0'
+2021-06-27 15:03:36	8.8s	agitated_magritte	ERR	c42c4047d6d835d04f80584d5edd8f68	71b51e86-1c24-4884-a7cb-313e336d692f	nextflow run . -with-docker 'theislab/spapros:1.0.0'
+2021-06-27 15:08:07	4.9s	infallible_swartz	ERR	c42c4047d6d835d04f80584d5edd8f68	ee54a68b-a5c8-4de0-8fb0-3c945f413e41	nextflow run . -profile singularity
+2021-06-27 15:12:56	9s	admiring_lamport	ERR	c42c4047d6d835d04f80584d5edd8f68	28909709-4591-4fd1-b945-aef7fa436050	nextflow run . -profile singularity
+2021-06-27 15:14:24	10.5s	boring_goldberg	ERR	c42c4047d6d835d04f80584d5edd8f68	6017a007-e698-46a1-9448-1734345f3928	nextflow run . -profile docker
+2021-06-27 15:24:48	3.7s	backstabbing_brattain	ERR	5ec6d657cc2ca980162e8897cc131d7d29b86969	8f7101e6-cba4-4987-961d-96c05efbca9c	nextflow run rnatoy -with-docker
+2021-06-27 15:27:28	7.1s	gloomy_goldwasser	ERR	5ec6d657cc2ca980162e8897cc131d7d29b86969	22a22e5c-1c4d-4153-8dd3-f5a504b7cbf8	nextflow run nextflow-io/rnatoy -with-docker

@@ -1,0 +1,10 @@
+name: spapros
+channels:
+    - defaults
+    - conda-forge
+    - bioconda
+dependencies:
+    - pip
+    - pip:
+      - git+https://github.com/theislab/spapros.git@development
+

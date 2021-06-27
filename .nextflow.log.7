@@ -1,0 +1,178 @@
+Jun-27 14:38:48.222 [main] DEBUG nextflow.cli.Launcher - $> nextflow run . -with-docker
+Jun-27 14:38:48.386 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.1
+Jun-27 14:38:50.345 [main] INFO  nextflow.cli.CmdRun - Launching `./main.nf` [desperate_boyd] - revision: c42c4047d6
+Jun-27 14:38:50.360 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
+Jun-27 14:38:50.361 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
+Jun-27 14:38:50.375 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Jun-27 14:38:50.745 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-27 14:38:50.746 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-27 14:38:50.749 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-27 14:38:51.432 [main] DEBUG nextflow.config.ConfigBuilder - Enabling execution in Docker container as requested by cli option `-with-docker -`
+Jun-27 14:38:51.437 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/home/zeth/.nextflow/plugins
+Jun-27 14:38:51.439 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jun-27 14:38:51.440 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins local root: .nextflow/plr/empty
+Jun-27 14:38:51.444 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-27 14:38:51.445 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-27 14:38:51.450 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-27 14:38:51.492 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jun-27 14:38:51.594 [main] DEBUG nextflow.Session - Session uuid: 61694d97-f3d0-4d25-9635-d14fe2728bf9
+Jun-27 14:38:51.594 [main] DEBUG nextflow.Session - Run name: desperate_boyd
+Jun-27 14:38:51.595 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-27 14:38:51.613 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 21.04.1 build 5556
+  Created: 14-05-2021 15:20 UTC (17:20 CEST)
+  System: Linux 5.12.13-arch1-2
+  Runtime: Groovy 3.0.7 on OpenJDK 64-Bit Server VM 1.8.0_152-release-1056-b12
+  Encoding: UTF-8 (ANSI_X3.4-1968)
+  Process: 49795@master [192.168.0.49]
+  CPUs: 8 - Mem: 15.3 GB (1.9 GB) - Swap: 12 GB (12 GB)
+Jun-27 14:38:51.646 [main] DEBUG nextflow.Session - Work-dir: /home/zeth/nextflow_projects/spapros-pipeline/work [ext2/ext3]
+Jun-27 14:38:51.695 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jun-27 14:38:51.714 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jun-27 14:38:51.980 [main] DEBUG nextflow.Session - Session start invoked
+Jun-27 14:38:51.987 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /home/zeth/nextflow_projects/spapros-pipeline/[:]/pipeline_info/execution_trace.txt
+Jun-27 14:38:53.538 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-27 14:38:53.555 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: spapros_test, get_software_versions
+Jun-27 14:38:53.593 [main] INFO  nextflow.Nextflow - Run Name          : desperate_boyd
+Pipeline Name     : theislab/spapros
+Pipeline Version  : 1.0.0
+Max Memory        : 128 GB
+Max CPUs          : 12
+Max Time          : 10d
+Output dir        : ./results
+Working dir       : /home/zeth/nextflow_projects/spapros-pipeline/work
+Container Engine  : docker
+Container         : theislab/spapros:1.0.0
+Launch dir        : /home/zeth/nextflow_projects/spapros-pipeline
+User              : zeth
+Script dir        : /home/zeth/nextflow_projects/spapros-pipeline
+Config Profile    : standard
+Jun-27 14:38:53.594 [main] INFO  nextflow.Nextflow - -[2m--------------------------------------------------[0m-
+Jun-27 14:38:53.727 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:get_software_versions` matches process get_software_versions
+Jun-27 14:38:53.736 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-27 14:38:53.738 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-27 14:38:53.752 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jun-27 14:38:53.763 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=15.3 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Jun-27 14:38:54.205 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-27 14:38:54.207 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-27 14:38:54.238 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-27 14:38:54.239 [main] DEBUG nextflow.Session - Session await
+Jun-27 14:38:54.548 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-27 14:38:54.557 [Task submitter] INFO  nextflow.Session - [25/395896] Submitted process > spapros_test
+Jun-27 14:38:54.618 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-27 14:38:54.621 [Task submitter] INFO  nextflow.Session - [11/cbf5a1] Submitted process > get_software_versions
+Jun-27 14:38:55.515 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: spapros_test; status: COMPLETED; exit: 127; error: -; workDir: /home/zeth/nextflow_projects/spapros-pipeline/work/25/39589683c497d892df84ac6dfab160]
+Jun-27 14:38:55.564 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'spapros_test'
+
+Caused by:
+  Process `spapros_test` terminated with an error exit status (127)
+
+Command executed:
+
+  spapros --help
+
+Command exit status:
+  127
+
+Command output:
+  (empty)
+
+Command error:
+  .command.sh: line 2: spapros: command not found
+
+Work dir:
+  /home/zeth/nextflow_projects/spapros-pipeline/work/25/39589683c497d892df84ac6dfab160
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+Jun-27 14:38:55.621 [Task monitor] INFO  nextflow.Session - Execution cancelled -- Finishing pending tasks before exit
+Jun-27 14:38:55.653 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-27 14:38:55.659 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: get_software_versions; status: COMPLETED; exit: 0; error: -; workDir: /home/zeth/nextflow_projects/spapros-pipeline/work/11/cbf5a1cea0086776af438341d537b9]
+Jun-27 14:38:55.702 [Task monitor] DEBUG n.util.BlockingThreadExecutorFactory - Thread pool name=FileTransfer; maxThreads=24; maxQueueSize=72; keepAlive=1m
+Jun-27 14:38:55.734 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-27 14:38:55.980 [main] ERROR nextflow.script.WorkflowMetadata - Failed to invoke `workflow.onComplete` event handler
+java.io.IOException: Cannot run program "hostname": error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at java.lang.Runtime.exec(Runtime.java:620)
+	at java.lang.Runtime.exec(Runtime.java:450)
+	at java.lang.Runtime.exec(Runtime.java:347)
+	at org.codehaus.groovy.runtime.ProcessGroovyMethods.execute(ProcessGroovyMethods.java:538)
+	at org.codehaus.groovy.runtime.dgm$966.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:247)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:130)
+	at Script_f119bcfd.checkHostname(Script_f119bcfd:229)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:351)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:61)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:176)
+	at Script_f119bcfd$_runScript_closure5.doCall(Script_f119bcfd:217)
+	at Script_f119bcfd$_runScript_closure5.doCall(Script_f119bcfd)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1035)
+	at groovy.lang.Closure.call(Closure.java:412)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at nextflow.script.WorkflowMetadata$_invokeOnComplete_closure4.doCall(WorkflowMetadata.groovy:383)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1035)
+	at groovy.lang.Closure.call(Closure.java:412)
+	at groovy.lang.Closure.call(Closure.java:428)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2318)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2303)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2344)
+	at nextflow.script.WorkflowMetadata.invokeOnComplete(WorkflowMetadata.groovy:381)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1035)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:1029)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:1012)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:101)
+	at nextflow.script.WorkflowMetadata$_closure3.doCall(WorkflowMetadata.groovy:246)
+	at nextflow.script.WorkflowMetadata$_closure3.call(WorkflowMetadata.groovy)
+	at nextflow.Session.shutdown0(Session.groovy:667)
+	at nextflow.Session.destroy(Session.groovy:619)
+	at nextflow.script.ScriptRunner.terminate(ScriptRunner.groovy:222)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:122)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:302)
+	at nextflow.cli.Launcher.run(Launcher.groovy:475)
+	at nextflow.cli.Launcher.main(Launcher.groovy:657)
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.UNIXProcess.forkAndExec(Native Method)
+	at java.lang.UNIXProcess.<init>(UNIXProcess.java:247)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:134)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 69 common frames omitted
+Jun-27 14:38:56.000 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=48ms; failedDuration=902ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=8 GB; ]
+Jun-27 14:38:56.000 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jun-27 14:38:56.004 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jun-27 14:38:56.075 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  [{"cpuUsage":null,"process":"spapros_test","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":902,"min":902,"q1":902,"q2":902,"q3":902,"max":902,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"writes":null},{"cpuUsage":{"mean":62.7,"min":62.7,"q1":62.7,"q2":62.7,"q3":62.7,"max":62.7,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"process":"get_software_versions","mem":{"mean":3149824,"min":3149824,"q1":3149824,"q2":3149824,"q3":3149824,"max":3149824,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"memUsage":{"mean":0.07,"min":0.07,"q1":0.07,"q2":0.07,"q3":0.07,"max":0.07,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"timeUsage":null,"vmem":{"mean":5640192,"min":5640192,"q1":5640192,"q2":5640192,"q3":5640192,"max":5640192,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"reads":{"mean":395808,"min":395808,"q1":395808,"q2":395808,"q3":395808,"max":395808,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"cpu":{"mean":62.7,"min":62.7,"q1":62.7,"q2":62.7,"q3":62.7,"max":62.7,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"time":{"mean":48,"min":48,"q1":48,"q2":48,"q3":48,"max":48,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"writes":{"mean":619,"min":619,"q1":619,"q2":619,"q3":619,"max":619,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"}}]
+Jun-27 14:38:57.021 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jun-27 14:38:57.216 [main] WARN  nextflow.dag.GraphvizRenderer - To render the execution DAG in the required format it is required to install Graphviz -- See http://www.graphviz.org for more info.
+Jun-27 14:38:57.424 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Jun-27 14:38:57.451 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
