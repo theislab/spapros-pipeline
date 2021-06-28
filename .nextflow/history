@@ -18,3 +18,18 @@
 2021-06-27 15:14:24	10.5s	boring_goldberg	ERR	c42c4047d6d835d04f80584d5edd8f68	6017a007-e698-46a1-9448-1734345f3928	nextflow run . -profile docker
 2021-06-27 15:24:48	3.7s	backstabbing_brattain	ERR	5ec6d657cc2ca980162e8897cc131d7d29b86969	8f7101e6-cba4-4987-961d-96c05efbca9c	nextflow run rnatoy -with-docker
 2021-06-27 15:27:28	7.1s	gloomy_goldwasser	ERR	5ec6d657cc2ca980162e8897cc131d7d29b86969	22a22e5c-1c4d-4153-8dd3-f5a504b7cbf8	nextflow run nextflow-io/rnatoy -with-docker
+2021-06-27 15:47:21	8.9s	berserk_hamilton	ERR	c42c4047d6d835d04f80584d5edd8f68	68d138a6-682a-4a72-a438-3bfe897a9272	nextflow run . -profile docker
+2021-06-27 16:01:00	13.5s	astonishing_aryabhata	OK	c42c4047d6d835d04f80584d5edd8f68	22275009-0ee2-47e2-9bf3-8b6eaa17f58f	nextflow run .
+2021-06-27 16:08:33	8.9s	exotic_marconi	ERR	c42c4047d6d835d04f80584d5edd8f68	dedec03d-6b4f-4a5e-a530-7c94ebac7616	nextflow run . -with-docker 'theislab/spapros:1.0.0'
+2021-06-27 16:09:20	2m 3s	furious_galileo	OK	c42c4047d6d835d04f80584d5edd8f68	1f996fbe-b2a7-4999-a6e5-977fa0ef5727	nextflow run . -profile conda
+2021-06-27 16:12:24	9.3s	cheesy_sanger	ERR	c42c4047d6d835d04f80584d5edd8f68	2656197f-a94f-4521-aaba-651d05b8ead3	nextflow run . -profile docker
+2021-06-28 11:53:19	11.7s	condescending_lamarr	OK	c42c4047d6d835d04f80584d5edd8f68	bfc2c595-62c6-48d4-9031-ef808b7f7d91	nextflow run . -profile conda
+2021-06-28 11:56:22	-	nauseous_elion	-	5be321632109b364285200d2700a0bdb	358abeb1-fe0d-4e00-8147-caaa50a92da4	nextflow run . -profile conda
+2021-06-28 11:56:34	9s	pedantic_visvesvaraya	OK	40e2d6c40130f5732f0f21cb81b4445e	918d21c0-d4bd-4fbc-b49e-0f3d5804fe45	nextflow run . -profile conda
+2021-06-28 11:56:59	11.8s	sleepy_coulomb	OK	40e2d6c40130f5732f0f21cb81b4445e	c11ed961-a529-449a-9f95-5cc19f8ec381	nextflow run . -profile conda
+2021-06-28 12:06:34	12.6s	infallible_yalow	OK	ef1ed48b2403a85eba27fc6472179575	a60b553e-51e8-408e-839e-d642f83d9dbd	nextflow run .
+2021-06-28 12:11:59	11.3s	magical_engelbart	OK	a37aafbe6beabf23dd5d1897c7889aba	a422a986-04f5-4103-88f0-10a539cba0f0	nextflow run . -profile conda
+2021-06-28 12:12:38	12.5s	elegant_knuth	OK	0d155378add418ead454e298b03e1ca7	c0098659-f565-468e-b9c7-c082c5082a6c	nextflow run . -profile conda
+2021-06-28 12:13:09	10.8s	curious_lamarck	OK	0d155378add418ead454e298b03e1ca7	a623b741-1cbf-4f0d-b72b-a6b244a8ec74	nextflow run . -profile conda
+2021-06-28 12:23:28	12.6s	cheeky_wozniak	OK	4ac6abfcd50b9af5e80a6756e9f7708a	11e3594a-e1bf-4e89-af1f-5bded17d6c3b	nextflow run . -profile conda
+2021-06-28 12:24:46	11.5s	pensive_majorana	OK	4ac6abfcd50b9af5e80a6756e9f7708a	c0982aaf-d8b0-4552-b3bb-03d3246b9028	nextflow run . -profile conda

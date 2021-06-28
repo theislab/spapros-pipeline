@@ -1,39 +1,39 @@
-Jun-27 14:38:48.222 [main] DEBUG nextflow.cli.Launcher - $> nextflow run . -with-docker
-Jun-27 14:38:48.386 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.1
-Jun-27 14:38:50.345 [main] INFO  nextflow.cli.CmdRun - Launching `./main.nf` [desperate_boyd] - revision: c42c4047d6
-Jun-27 14:38:50.360 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
-Jun-27 14:38:50.361 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
-Jun-27 14:38:50.375 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Jun-27 14:38:50.745 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Jun-27 14:38:50.746 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Jun-27 14:38:50.749 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-Jun-27 14:38:51.432 [main] DEBUG nextflow.config.ConfigBuilder - Enabling execution in Docker container as requested by cli option `-with-docker -`
-Jun-27 14:38:51.437 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/home/zeth/.nextflow/plugins
-Jun-27 14:38:51.439 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Jun-27 14:38:51.440 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins local root: .nextflow/plr/empty
-Jun-27 14:38:51.444 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Jun-27 14:38:51.445 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Jun-27 14:38:51.450 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-Jun-27 14:38:51.492 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Jun-27 14:38:51.594 [main] DEBUG nextflow.Session - Session uuid: 61694d97-f3d0-4d25-9635-d14fe2728bf9
-Jun-27 14:38:51.594 [main] DEBUG nextflow.Session - Run name: desperate_boyd
-Jun-27 14:38:51.595 [main] DEBUG nextflow.Session - Executor pool size: 8
-Jun-27 14:38:51.613 [main] DEBUG nextflow.cli.CmdRun - 
+Jun-28 11:56:31.354 [main] DEBUG nextflow.cli.Launcher - $> nextflow run . -profile conda
+Jun-28 11:56:31.495 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.04.1
+Jun-28 11:56:33.269 [main] INFO  nextflow.cli.CmdRun - Launching `./main.nf` [pedantic_visvesvaraya] - revision: 40e2d6c401
+Jun-28 11:56:33.287 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
+Jun-28 11:56:33.289 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/zeth/nextflow_projects/spapros-pipeline/nextflow.config
+Jun-28 11:56:33.301 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `conda`
+Jun-28 11:56:33.828 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-28 11:56:33.830 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-28 11:56:33.836 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-28 11:56:34.479 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [cfc_dev, ifb_core, denbi_qbic, bi, genotoul, bigpurple, uppmax, abims, imperial_mb, oist, docker, gis, eva, utd_ganymede, mpcdf, conda, singularity, icr_davros, munin, prince, czbiohub_aws, hebbe, jax, cfc, utd_sysbio, uzh, ccga_med, debug, test, genouest, cbe, ebc, ccga_dx, crick, google, kraken, phoenix, seg_globe, shh, biohpc_gen, sanger, awsbatch, pasteur, uct_hpc, imperial, binac, eddie]
+Jun-28 11:56:34.499 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/home/zeth/.nextflow/plugins
+Jun-28 11:56:34.503 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jun-28 11:56:34.503 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins local root: .nextflow/plr/empty
+Jun-28 11:56:34.509 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-28 11:56:34.509 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-28 11:56:34.513 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jun-28 11:56:34.530 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jun-28 11:56:34.614 [main] DEBUG nextflow.Session - Session uuid: 918d21c0-d4bd-4fbc-b49e-0f3d5804fe45
+Jun-28 11:56:34.614 [main] DEBUG nextflow.Session - Run name: pedantic_visvesvaraya
+Jun-28 11:56:34.615 [main] DEBUG nextflow.Session - Executor pool size: 8
+Jun-28 11:56:34.632 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 21.04.1 build 5556
   Created: 14-05-2021 15:20 UTC (17:20 CEST)
   System: Linux 5.12.13-arch1-2
   Runtime: Groovy 3.0.7 on OpenJDK 64-Bit Server VM 1.8.0_152-release-1056-b12
   Encoding: UTF-8 (ANSI_X3.4-1968)
-  Process: 49795@master [192.168.0.49]
-  CPUs: 8 - Mem: 15.3 GB (1.9 GB) - Swap: 12 GB (12 GB)
-Jun-27 14:38:51.646 [main] DEBUG nextflow.Session - Work-dir: /home/zeth/nextflow_projects/spapros-pipeline/work [ext2/ext3]
-Jun-27 14:38:51.695 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Jun-27 14:38:51.714 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Jun-27 14:38:51.980 [main] DEBUG nextflow.Session - Session start invoked
-Jun-27 14:38:51.987 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /home/zeth/nextflow_projects/spapros-pipeline/[:]/pipeline_info/execution_trace.txt
-Jun-27 14:38:53.538 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Jun-27 14:38:53.555 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: spapros_test, get_software_versions
-Jun-27 14:38:53.593 [main] INFO  nextflow.Nextflow - Run Name          : desperate_boyd
+  Process: 279131@master [192.168.0.49]
+  CPUs: 8 - Mem: 15.3 GB (459.4 MB) - Swap: 12 GB (12 GB)
+Jun-28 11:56:34.659 [main] DEBUG nextflow.Session - Work-dir: /home/zeth/nextflow_projects/spapros-pipeline/work [ext2/ext3]
+Jun-28 11:56:34.684 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jun-28 11:56:34.704 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jun-28 11:56:34.963 [main] DEBUG nextflow.Session - Session start invoked
+Jun-28 11:56:34.971 [main] DEBUG nextflow.trace.TraceFileObserver - Flow starting -- trace file: /home/zeth/nextflow_projects/spapros-pipeline/[:]/pipeline_info/execution_trace.txt
+Jun-28 11:56:36.359 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-28 11:56:36.374 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: spapros_test, get_software_versions
+Jun-28 11:56:36.412 [main] INFO  nextflow.Nextflow - Run Name          : pedantic_visvesvaraya
 Pipeline Name     : theislab/spapros
 Pipeline Version  : 1.0.0
 Max Memory        : 128 GB
@@ -41,138 +41,38 @@ Max CPUs          : 12
 Max Time          : 10d
 Output dir        : ./results
 Working dir       : /home/zeth/nextflow_projects/spapros-pipeline/work
-Container Engine  : docker
-Container         : theislab/spapros:1.0.0
+Container Engine  : null
 Launch dir        : /home/zeth/nextflow_projects/spapros-pipeline
 User              : zeth
 Script dir        : /home/zeth/nextflow_projects/spapros-pipeline
-Config Profile    : standard
-Jun-27 14:38:53.594 [main] INFO  nextflow.Nextflow - -[2m--------------------------------------------------[0m-
-Jun-27 14:38:53.727 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:get_software_versions` matches process get_software_versions
-Jun-27 14:38:53.736 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Jun-27 14:38:53.738 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jun-27 14:38:53.752 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Jun-27 14:38:53.763 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=15.3 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
-Jun-27 14:38:54.205 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Jun-27 14:38:54.207 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Jun-27 14:38:54.238 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
-Jun-27 14:38:54.239 [main] DEBUG nextflow.Session - Session await
-Jun-27 14:38:54.548 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Jun-27 14:38:54.557 [Task submitter] INFO  nextflow.Session - [25/395896] Submitted process > spapros_test
-Jun-27 14:38:54.618 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Jun-27 14:38:54.621 [Task submitter] INFO  nextflow.Session - [11/cbf5a1] Submitted process > get_software_versions
-Jun-27 14:38:55.515 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: spapros_test; status: COMPLETED; exit: 127; error: -; workDir: /home/zeth/nextflow_projects/spapros-pipeline/work/25/39589683c497d892df84ac6dfab160]
-Jun-27 14:38:55.564 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'spapros_test'
-
-Caused by:
-  Process `spapros_test` terminated with an error exit status (127)
-
-Command executed:
-
-  spapros --help
-
-Command exit status:
-  127
-
-Command output:
-  (empty)
-
-Command error:
-  .command.sh: line 2: spapros: command not found
-
-Work dir:
-  /home/zeth/nextflow_projects/spapros-pipeline/work/25/39589683c497d892df84ac6dfab160
-
-Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
-Jun-27 14:38:55.621 [Task monitor] INFO  nextflow.Session - Execution cancelled -- Finishing pending tasks before exit
-Jun-27 14:38:55.653 [main] DEBUG nextflow.Session - Session await > all process finished
-Jun-27 14:38:55.659 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: get_software_versions; status: COMPLETED; exit: 0; error: -; workDir: /home/zeth/nextflow_projects/spapros-pipeline/work/11/cbf5a1cea0086776af438341d537b9]
-Jun-27 14:38:55.702 [Task monitor] DEBUG n.util.BlockingThreadExecutorFactory - Thread pool name=FileTransfer; maxThreads=24; maxQueueSize=72; keepAlive=1m
-Jun-27 14:38:55.734 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Jun-27 14:38:55.980 [main] ERROR nextflow.script.WorkflowMetadata - Failed to invoke `workflow.onComplete` event handler
-java.io.IOException: Cannot run program "hostname": error=2, No such file or directory
-	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
-	at java.lang.Runtime.exec(Runtime.java:620)
-	at java.lang.Runtime.exec(Runtime.java:450)
-	at java.lang.Runtime.exec(Runtime.java:347)
-	at org.codehaus.groovy.runtime.ProcessGroovyMethods.execute(ProcessGroovyMethods.java:538)
-	at org.codehaus.groovy.runtime.dgm$966.invoke(Unknown Source)
-	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:247)
-	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:130)
-	at Script_f119bcfd.checkHostname(Script_f119bcfd:229)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
-	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:351)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:61)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:176)
-	at Script_f119bcfd$_runScript_closure5.doCall(Script_f119bcfd:217)
-	at Script_f119bcfd$_runScript_closure5.doCall(Script_f119bcfd)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
-	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1035)
-	at groovy.lang.Closure.call(Closure.java:412)
-	at groovy.lang.Closure.call(Closure.java:406)
-	at nextflow.script.WorkflowMetadata$_invokeOnComplete_closure4.doCall(WorkflowMetadata.groovy:383)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
-	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:263)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1035)
-	at groovy.lang.Closure.call(Closure.java:412)
-	at groovy.lang.Closure.call(Closure.java:428)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2318)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2303)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2344)
-	at nextflow.script.WorkflowMetadata.invokeOnComplete(WorkflowMetadata.groovy:381)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
-	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1035)
-	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:1029)
-	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:1012)
-	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethodSafe(InvokerHelper.java:101)
-	at nextflow.script.WorkflowMetadata$_closure3.doCall(WorkflowMetadata.groovy:246)
-	at nextflow.script.WorkflowMetadata$_closure3.call(WorkflowMetadata.groovy)
-	at nextflow.Session.shutdown0(Session.groovy:667)
-	at nextflow.Session.destroy(Session.groovy:619)
-	at nextflow.script.ScriptRunner.terminate(ScriptRunner.groovy:222)
-	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:122)
-	at nextflow.cli.CmdRun.run(CmdRun.groovy:302)
-	at nextflow.cli.Launcher.run(Launcher.groovy:475)
-	at nextflow.cli.Launcher.main(Launcher.groovy:657)
-Caused by: java.io.IOException: error=2, No such file or directory
-	at java.lang.UNIXProcess.forkAndExec(Native Method)
-	at java.lang.UNIXProcess.<init>(UNIXProcess.java:247)
-	at java.lang.ProcessImpl.start(ProcessImpl.java:134)
-	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
-	... 69 common frames omitted
-Jun-27 14:38:56.000 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=1; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=48ms; failedDuration=902ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=8 GB; ]
-Jun-27 14:38:56.000 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
-Jun-27 14:38:56.004 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
-Jun-27 14:38:56.075 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
-  [{"cpuUsage":null,"process":"spapros_test","mem":null,"memUsage":null,"timeUsage":{"mean":0.01,"min":0.01,"q1":0.01,"q2":0.01,"q3":0.01,"max":0.01,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"vmem":null,"reads":null,"cpu":null,"time":{"mean":902,"min":902,"q1":902,"q2":902,"q3":902,"max":902,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"writes":null},{"cpuUsage":{"mean":62.7,"min":62.7,"q1":62.7,"q2":62.7,"q3":62.7,"max":62.7,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"process":"get_software_versions","mem":{"mean":3149824,"min":3149824,"q1":3149824,"q2":3149824,"q3":3149824,"max":3149824,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"memUsage":{"mean":0.07,"min":0.07,"q1":0.07,"q2":0.07,"q3":0.07,"max":0.07,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"timeUsage":null,"vmem":{"mean":5640192,"min":5640192,"q1":5640192,"q2":5640192,"q3":5640192,"max":5640192,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"reads":{"mean":395808,"min":395808,"q1":395808,"q2":395808,"q3":395808,"max":395808,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"cpu":{"mean":62.7,"min":62.7,"q1":62.7,"q2":62.7,"q3":62.7,"max":62.7,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"time":{"mean":48,"min":48,"q1":48,"q2":48,"q3":48,"max":48,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"writes":{"mean":619,"min":619,"q1":619,"q2":619,"q3":619,"max":619,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"}}]
-Jun-27 14:38:57.021 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
-Jun-27 14:38:57.216 [main] WARN  nextflow.dag.GraphvizRenderer - To render the execution DAG in the required format it is required to install Graphviz -- See http://www.graphviz.org for more info.
-Jun-27 14:38:57.424 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
-Jun-27 14:38:57.451 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+Config Profile    : conda
+Jun-28 11:56:36.414 [main] INFO  nextflow.Nextflow - -[2m--------------------------------------------------[0m-
+Jun-28 11:56:36.528 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:get_software_versions` matches process get_software_versions
+Jun-28 11:56:36.533 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-28 11:56:36.534 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-28 11:56:36.544 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jun-28 11:56:36.552 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=15.3 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Jun-28 11:56:37.008 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-28 11:56:37.010 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-28 11:56:37.046 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Jun-28 11:56:37.047 [main] DEBUG nextflow.Session - Session await
+Jun-28 11:56:37.248 [Actor Thread 7] DEBUG nextflow.conda.CondaCache - Conda found local env for environment=/home/zeth/nextflow_projects/spapros-pipeline/environment.yml; path=/home/zeth/nextflow_projects/spapros-pipeline/work/conda/spapros-579b0c795726184da2adbee661496482
+Jun-28 11:56:37.417 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-28 11:56:37.426 [Task submitter] INFO  nextflow.Session - [02/e93871] Submitted process > get_software_versions
+Jun-28 11:56:37.469 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-28 11:56:37.470 [Task submitter] INFO  nextflow.Session - [ad/876dc5] Submitted process > spapros_test
+Jun-28 11:56:38.710 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: get_software_versions; status: COMPLETED; exit: 0; error: -; workDir: /home/zeth/nextflow_projects/spapros-pipeline/work/02/e93871d22429620a12c5676ec59ac7]
+Jun-28 11:56:38.783 [Task monitor] DEBUG n.util.BlockingThreadExecutorFactory - Thread pool name=FileTransfer; maxThreads=24; maxQueueSize=72; keepAlive=1m
+Jun-28 11:56:41.762 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: spapros_test; status: COMPLETED; exit: 0; error: -; workDir: /home/zeth/nextflow_projects/spapros-pipeline/work/ad/876dc56e8c531e01bc8e04b6a2afef]
+Jun-28 11:56:41.764 [main] DEBUG nextflow.Session - Session await > all process finished
+Jun-28 11:56:41.766 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-28 11:56:41.870 [main] INFO  nextflow.Nextflow - -[0;35m[theislab/spapros][0;32m Pipeline completed successfully[0m-
+Jun-28 11:56:41.876 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=2; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=3.4s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=2; peakMemory=8 GB; ]
+Jun-28 11:56:41.876 [main] DEBUG nextflow.trace.TraceFileObserver - Flow completing -- flushing trace file
+Jun-28 11:56:41.878 [main] DEBUG nextflow.trace.ReportObserver - Flow completing -- rendering html report
+Jun-28 11:56:41.922 [main] DEBUG nextflow.trace.ReportObserver - Execution report summary data:
+  [{"cpuUsage":{"mean":40.9,"min":40.9,"q1":40.9,"q2":40.9,"q3":40.9,"max":40.9,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"process":"get_software_versions","mem":null,"memUsage":null,"timeUsage":null,"vmem":null,"reads":{"mean":909190,"min":909190,"q1":909190,"q2":909190,"q3":909190,"max":909190,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"cpu":{"mean":40.9,"min":40.9,"q1":40.9,"q2":40.9,"q3":40.9,"max":40.9,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"time":{"mean":191,"min":191,"q1":191,"q2":191,"q3":191,"max":191,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"},"writes":{"mean":633,"min":633,"q1":633,"q2":633,"q3":633,"max":633,"minLabel":"get_software_versions","maxLabel":"get_software_versions","q1Label":"get_software_versions","q2Label":"get_software_versions","q3Label":"get_software_versions"}},{"cpuUsage":{"mean":129.8,"min":129.8,"q1":129.8,"q2":129.8,"q3":129.8,"max":129.8,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"process":"spapros_test","mem":{"mean":239951872,"min":239951872,"q1":239951872,"q2":239951872,"q3":239951872,"max":239951872,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"memUsage":{"mean":5.59,"min":5.59,"q1":5.59,"q2":5.59,"q3":5.59,"max":5.59,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"timeUsage":{"mean":0.04,"min":0.04,"q1":0.04,"q2":0.04,"q3":0.04,"max":0.04,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"vmem":{"mean":1428684800,"min":1428684800,"q1":1428684800,"q2":1428684800,"q3":1428684800,"max":1428684800,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"reads":{"mean":33123628,"min":33123628,"q1":33123628,"q2":33123628,"q3":33123628,"max":33123628,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"cpu":{"mean":129.8,"min":129.8,"q1":129.8,"q2":129.8,"q3":129.8,"max":129.8,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"time":{"mean":3185,"min":3185,"q1":3185,"q2":3185,"q3":3185,"max":3185,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"},"writes":{"mean":117028,"min":117028,"q1":117028,"q2":117028,"q3":117028,"max":117028,"minLabel":"spapros_test","maxLabel":"spapros_test","q1Label":"spapros_test","q2Label":"spapros_test","q3Label":"spapros_test"}}]
+Jun-28 11:56:42.783 [main] DEBUG nextflow.trace.TimelineObserver - Flow completing -- rendering html timeline
+Jun-28 11:56:42.929 [main] WARN  nextflow.dag.GraphvizRenderer - To render the execution DAG in the required format it is required to install Graphviz -- See http://www.graphviz.org for more info.
+Jun-28 11:56:42.963 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Jun-28 11:56:42.984 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -7,67 +7,38 @@
   nf-core/mhcquant v1.0.0
 ----------------------------------------------------
 
-Run Name: boring_goldberg
+Run Name: pensive_majorana
 
-####################################################
-## nf-core/mhcquant execution completed unsuccessfully! ##
-####################################################
-The exit status of the task that caused the workflow execution to fail was: 127.
-The full error message was:
-
-Error executing process > 'spapros_test'
-
-Caused by:
-  Process `spapros_test` terminated with an error exit status (127)
-
-Command executed:
-
-  spapros --help
-
-Command exit status:
-  127
-
-Command output:
-  (empty)
-
-Command error:
-  .command.sh: line 2: spapros: command not found
-
-Work dir:
-  /home/zeth/nextflow_projects/spapros-pipeline/work/dd/836a44883a4c38d131e2569a3f8398
-
-Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+## nf-core/mhcquant execution completed successfully! ##
 
 
-
-The workflow was completed at 2021-06-27T15:14:31.866+02:00 (duration: 6.6s)
+The workflow was completed at 2021-06-28T12:24:55.175+02:00 (duration: 8s)
 
 The command used to launch the workflow was as follows:
 
-  nextflow run . -profile docker
+  nextflow run . -profile conda
 
 
 
 Pipeline Configuration:
 -----------------------
- - Run Name: boring_goldberg
- - Pipeline Name: theislab/spapros
+ - Run Name: pensive_majorana
+ - Pipeline Name: theislab/spapros-pipeline
  - Pipeline Version: 1.0.0
  - Max Memory: 128 GB
  - Max CPUs: 12
  - Max Time: 10d
  - Output dir: ./results
  - Working dir: /home/zeth/nextflow_projects/spapros-pipeline/work
- - Container Engine: docker
- - Container: theislab/spapros:1.0.0
+ - Container Engine: null
  - Launch dir: /home/zeth/nextflow_projects/spapros-pipeline
  - User: zeth
  - Script dir: /home/zeth/nextflow_projects/spapros-pipeline
- - Config Profile: docker
- - Date Started: 2021-06-27T15:14:25.234+02:00
- - Date Completed: 2021-06-27T15:14:31.866+02:00
+ - Config Profile: conda
+ - Date Started: 2021-06-28T12:24:47.185+02:00
+ - Date Completed: 2021-06-28T12:24:55.175+02:00
  - Pipeline script file path: /home/zeth/nextflow_projects/spapros-pipeline/main.nf
- - Pipeline script hash ID: c42c4047d6d835d04f80584d5edd8f68
+ - Pipeline script hash ID: 4ac6abfcd50b9af5e80a6756e9f7708a
  - Nextflow Version: 21.04.1
  - Nextflow Build: 5556
  - Nextflow Compile Timestamp: 14-05-2021 15:20 UTC

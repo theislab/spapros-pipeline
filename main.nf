@@ -7,7 +7,7 @@ def helpMessage() {
 
     The typical command for running the pipeline is as follows:
 
-    nextflow run theislab/spapros --input 'sample_sheet.tsv'
+    nextflow run theislab/spapros-pipeline --input 'sample_sheet.tsv'
 
     Mandatory arguments:
       --input [file]                            Path to sample sheet (specifying raw or mzml files)
@@ -43,10 +43,12 @@ if (!(workflow.runName ==~ /[a-z]+_[a-z]+/)) {
     custom_runName = workflow.runName
 }
 
+params.outdir = params.outdir ?: { log.warn "No output directory provided. Will put the results into './results'"; return "./results" }()
+
 def summary = [:]
 if (workflow.revision) summary['Pipeline Release'] = workflow.revision
 summary['Run Name']           = custom_runName ?: workflow.runName
-summary['Pipeline Name']      = 'theislab/spapros'
+summary['Pipeline Name']      = 'theislab/spapros-pipeline'
 summary['Pipeline Version']   = workflow.manifest.version
 summary['Max Memory']         = params.max_memory
 summary['Max CPUs']           = params.max_cpus
@@ -80,28 +82,6 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 // Check the hostnames against configured profiles
 // checkHostname()
 
-/*
- * Parse software version numbers
- */
-process get_software_versions {
-    publishDir "${params.outdir}/pipeline_info", mode: 'copy',
-        saveAs: { filename ->
-                      if (filename.indexOf(".csv") > 0) filename
-                      else null
-                }
-
-    output:
-    file 'software_versions_mqc.yaml' into ch_software_versions_yaml
-    file "software_versions.csv"
-
-    script:
-    """
-    echo $workflow.manifest.version > v_pipeline.txt
-    echo $workflow.nextflow.version > v_nextflow.txt
-    scrape_software_versions.py &> software_versions_mqc.yaml
-    """
-}
-
 
 
 /*
@@ -122,9 +102,9 @@ process spapros_test {
 workflow.onComplete {
 
     // Set up the e-mail variables
-    def subject = "[theislab/spapros] Successful: $workflow.runName"
+    def subject = "[theislab/spapros-pipeline] Successful: $workflow.runName"
     if (!workflow.success) {
-        subject = "[theislab/spapros] FAILED: $workflow.runName"
+        subject = "[theislab/spapros-pipeline] FAILED: $workflow.runName"
     }
     def email_fields = [:]
     email_fields['version'] = workflow.manifest.version
@@ -178,7 +158,7 @@ workflow.onComplete {
             if (params.plaintext_email) { throw GroovyException('Send plaintext e-mail, not HTML') }
             // Try to send HTML e-mail using sendmail
             [ 'sendmail', '-t' ].execute() << sendmail_html
-            log.info "[theislab/spapros] Sent summary e-mail to $email_address (sendmail)"
+            log.info "[theislab/spapros-pipeline] Sent summary e-mail to $email_address (sendmail)"
         } catch (all) {
             // Catch failures and try with plaintext
             def mail_cmd = [ 'mail', '-s', subject, '--content-type=text/html', email_address ]
@@ -186,7 +166,7 @@ workflow.onComplete {
               mail_cmd += [ '-A', mqc_report ]
             }
             mail_cmd.execute() << email_html
-            log.info "[theislab/spapros] Sent summary e-mail to $email_address (mail)"
+            log.info "[theislab/spapros-pipeline] Sent summary e-mail to $email_address (mail)"
         }
     }
 
@@ -212,10 +192,10 @@ workflow.onComplete {
     }
 
     if (workflow.success) {
-        log.info "-${c_purple}[theislab/spapros]${c_green} Pipeline completed successfully${c_reset}-"
+        log.info "-${c_purple}[theislab/spapros-pipeline]${c_green} Pipeline completed successfully${c_reset}-"
     } else {
         checkHostname()
-        log.info "-${c_purple}[theislab/spapros]${c_red} Pipeline completed with errors${c_reset}-"
+        log.info "-${c_purple}[theislab/spapros-pipeline]${c_red} Pipeline completed with errors${c_reset}-"
     }
 
 }
