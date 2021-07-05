@@ -83,17 +83,31 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 // checkHostname()
 
 
-
 /*
- * STEP 1 - Spapros Test
+ * STEP 1 - Calculate shared results
  */
-process spapros_test {
+ ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
+ ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
+ process spapros_test {
+    echo true
+
+    input:
+     file adata from ch_adata
+     file parameters from ch_parameters
 
     script:
     """
-    spapros --help
+    custom_evaluation_pipeline.py --adata ${adata} --parameters ${parameters}
     """
 }
+
+ /*
+ * STEP 2 - Evaluate all specified gene sets
+ */
+ 
+ /*
+ * STEP 3 - Calculate summary statistics
+ */
 
 
 /*

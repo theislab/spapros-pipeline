@@ -7,22 +7,22 @@
   nf-core/mhcquant v1.0.0
 ----------------------------------------------------
 
-Run Name: pensive_majorana
+Run Name: stoic_becquerel
 
 ## nf-core/mhcquant execution completed successfully! ##
 
 
-The workflow was completed at 2021-06-28T12:24:55.175+02:00 (duration: 8s)
+The workflow was completed at 2021-07-05T16:51:54.155+02:00 (duration: 3.3s)
 
 The command used to launch the workflow was as follows:
 
-  nextflow run . -profile conda
+  nextflow run . -profile conda --adata data/small_data_raw_counts.h5ad --parameters data/parameters.yml
 
 
 
 Pipeline Configuration:
 -----------------------
- - Run Name: pensive_majorana
+ - Run Name: stoic_becquerel
  - Pipeline Name: theislab/spapros-pipeline
  - Pipeline Version: 1.0.0
  - Max Memory: 128 GB
@@ -35,10 +35,10 @@ Pipeline Configuration:
  - User: zeth
  - Script dir: /home/zeth/nextflow_projects/spapros-pipeline
  - Config Profile: conda
- - Date Started: 2021-06-28T12:24:47.185+02:00
- - Date Completed: 2021-06-28T12:24:55.175+02:00
+ - Date Started: 2021-07-05T16:51:50.806+02:00
+ - Date Completed: 2021-07-05T16:51:54.155+02:00
  - Pipeline script file path: /home/zeth/nextflow_projects/spapros-pipeline/main.nf
- - Pipeline script hash ID: 4ac6abfcd50b9af5e80a6756e9f7708a
+ - Pipeline script hash ID: 20679de813be0cfe086a3bd089ca31ad
  - Nextflow Version: 21.04.1
  - Nextflow Build: 5556
  - Nextflow Compile Timestamp: 14-05-2021 15:20 UTC
