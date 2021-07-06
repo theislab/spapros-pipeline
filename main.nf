@@ -86,20 +86,32 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 /*
  * STEP 1 - Calculate shared results
  */
- ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
- ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
- process spapros_test {
+ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
+ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
+ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
+ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
+process Shared_Results {
     echo true
 
+    publishDir "${params.outdir}/"
+
     input:
-     file adata from ch_adata
-     file parameters from ch_parameters
+    file adata from ch_adata
+    file parameters from ch_parameters
+    file probeset from ch_probeset
+    file markers from ch_markers
+
+    output:
+    file 'evaluation/references/small_data_cluster_similarity.csv' into ch_cluster_similarities
 
     script:
     """
-    custom_evaluation_pipeline.py --adata ${adata} --parameters ${parameters}
+    custom_evaluation_pipeline.py --adata ${adata} --parameters ${parameters} --probeset ${probeset} --markers ${markers} --results_dir "evaluation"
     """
 }
+
+
+// output file: results_dir+f"references/{dataset_params["name"]}_cluster_similarity.csv"
 
  /*
  * STEP 2 - Evaluate all specified gene sets

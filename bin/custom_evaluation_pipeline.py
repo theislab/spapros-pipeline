@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
-import scanpy as sc
 import argparse
+import pandas as pd
+import scanpy as sc
 
 from ruamel.yaml import YAML
 from pathlib import Path
 from scipy.sparse import issparse
 from sklearn.utils import sparsefuncs
+from spapros.evaluation import ProbesetEvaluator
+
 
 
 def preprocess_adata(
@@ -40,6 +43,9 @@ def preprocess_adata(
 parser = argparse.ArgumentParser()
 parser.add_argument("--adata", type=str)
 parser.add_argument("--parameters", type=str)
+parser.add_argument("--probeset", type=str)
+parser.add_argument("--markers", type=str)
+parser.add_argument("--results_dir", type=str)
 args = parser.parse_args()
 
 
@@ -53,27 +59,28 @@ metric_configs = parameters["metrics"]
 if dataset_params["process_adata"]:
    preprocess_adata(adata, options=dataset_params["process_adata"])
 
-def get_genes(set_id, probesets_file=probeset, var_names=adata.var_names):
-   """ """
+def get_genes(set_id, probesets_file=args.probeset, var_names=adata.var_names):
    selection = pd.read_csv(probesets_file, usecols=["index", set_id], index_col=0)
    genes = [g for g in selection.loc[selection[set_id]].index.to_list() if g in var_names]
    return genes
 
-# evaluator_kwargs = dict(
-#    scheme="custom",
-#    results_dir=results_dir,
-#    celltype_key=dataset_params["celltype_key"],
-#    marker_list=marker_file,
-#    metrics_params=metric_configs,
-#    reference_name=dataset_params["name"],
-# )
+evaluator_kwargs = dict(
+   scheme="custom",
+   results_dir=args.results_dir,
+   celltype_key=dataset_params["celltype_key"],
+   marker_list=args.markers,
+   metrics_params=metric_configs,
+   reference_name=dataset_params["name"],
+)
+
 ###############################
 ## 1.1 Compute shared results #
 ###############################
-## Note: forest_clfs doesn't have any shared computations
-#
-## Process 1.1.1 shared cluster_similarity
-## output file: results_dir+f"references/{dataset_params["name"]}_cluster_similarity.csv"
-#
-# evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
-# evaluator.compute_or_load_shared_results()
+evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
+evaluator.compute_or_load_shared_results()
+
+evaluator = ProbesetEvaluator(adata, metrics=["knn_overlap"], **evaluator_kwargs)
+evaluator.compute_or_load_shared_results()
+        
+evaluator = ProbesetEvaluator(adata, metrics=["gene_corr", "marker_corr"], **evaluator_kwargs)
+evaluator.compute_or_load_shared_results()
