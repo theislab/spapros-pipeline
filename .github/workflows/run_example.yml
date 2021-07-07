@@ -23,3 +23,8 @@ jobs:
 
       - name: Verify Nextflow Installation
         run: nextflow -version
+
+      - name: Run Example
+        run: |
+            chmod +x run.sh
+            ./run.sh
