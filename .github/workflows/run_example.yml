@@ -14,5 +14,9 @@ jobs:
           mamba-version: "*"
           channels: defaults,conda-forge,bioconda
           channel-priority: true
+
       - name: Install Nextflow
         run: mamba install -c bioconda nextflow
+
+      - name: Verify Nextflow Installation
+        run: nextflow -version
