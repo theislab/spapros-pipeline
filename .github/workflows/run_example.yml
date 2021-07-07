@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: 3.6
           mamba-version: "*"
-          channels: conda-forge,defaults
+          channels: defaults,conda-forge,bioconda
           channel-priority: true
       - shell: bash -l {0}
-        run: mamba install nextflow
+        run: mamba install -c bioconda nextflow
