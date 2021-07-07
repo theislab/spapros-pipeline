@@ -82,39 +82,88 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 // Check the hostnames against configured profiles
 // checkHostname()
 
+// Channel setups
+ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
+ch_adata.into { shared_adata; probesets_cs_adata; probesets_knn_adata }
+
+ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
+ch_parameters.into { shared_parameters; probesets_cs_parameters; probesets_knn_parameters }
+
+ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
+ch_probeset.into { shared_probeset; probesets_cs_probeset; probesets_knn_probeset }
+
+ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
+ch_markers.into { shared_markers; probesets_cs_markers; probesets_knn_markers }
 
 /*
  * STEP 1 - Calculate shared results
  */
-ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
-ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
-ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
-ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
+
 process Shared_Results {
     echo true
 
     publishDir "${params.outdir}/"
 
     input:
-    file adata from ch_adata
-    file parameters from ch_parameters
-    file probeset from ch_probeset
-    file markers from ch_markers
+    file adata from shared_adata
+    file parameters from shared_parameters
+    file probeset from shared_probeset
+    file markers from shared_markers
 
     output:
     file 'evaluation/references/*.csv' into ch_shared_results
 
     script:
     """
-    custom_evaluation_pipeline.py --adata ${adata} --parameters ${parameters} --probeset ${probeset} --markers ${markers} --results_dir "evaluation"
+    custom_evaluation_pipeline.py --step "shared" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
     """
 }
 
 
 /*
+# Process 1.2.1 probeset specific cluster_similarity pre results
+        # Parallelised: one process for each set_id
+        # output file: results_dir+f"cluster_similarity/{dataset_params["name"]}_{set_id}_pre.csv"
+
+1. If specific probesets are supplied -> take these -> "genesets_1_0", "genesets_1_1", "genesets_1_13"
+2. Else run the python code
+
  * STEP 2 - Evaluate all specified gene sets
 */
 
+probeset_ids = params.probeset_ids?.tokenize(',')
+
+
+process Evaluate_Cluster_Similarity_Probesets {
+    echo true
+
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from probesets_cs_adata
+    file parameters from probesets_cs_parameters
+    file probeset from probesets_cs_probeset
+    file markers from probesets_cs_markers
+    each probesetid from probeset_ids
+
+    output:
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "pre_results" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
 
 /*
  * STEP 3 - Calculate summary statistics

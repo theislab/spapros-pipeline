@@ -1,0 +1,18 @@
+name: Run Example
+
+on: [push, pull_request]
+
+jobs:
+  run-example:
+    name: Run Example
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.6
+          mamba-version: "*"
+          channels: conda-forge,defaults
+          channel-priority: true
+      - shell: bash -l {0}
+        run: mamba install nextflow
