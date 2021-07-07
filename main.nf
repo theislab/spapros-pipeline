@@ -126,15 +126,8 @@ process Shared_Results {
 
 
 /*
-# Process 1.2.1 probeset specific cluster_similarity pre results
-        # Parallelised: one process for each set_id
-        # output file: results_dir+f"cluster_similarity/{dataset_params["name"]}_{set_id}_pre.csv"
-
-1. If specific probesets are supplied -> take these -> "genesets_1_0", "genesets_1_1", "genesets_1_13"
-2. Else run the python code
-
- * STEP 2 - Evaluate all specified gene sets
-*/
+ * STEP 2.1 - Evaluate all specified gene sets
+ */
 
 probeset_ids = params.probeset_ids?.tokenize(',')
 
@@ -152,6 +145,7 @@ process Evaluate_Cluster_Similarity_Probesets {
     each probesetid from probeset_ids
 
     output:
+    file 'evaluation/cluster_similarity/*.csv' into ch_cs_probesets
 
     script:
     """
@@ -167,7 +161,7 @@ process Evaluate_Cluster_Similarity_Probesets {
 
 /*
  * STEP 3 - Calculate summary statistics
-*/
+ */
 
 
 /*
