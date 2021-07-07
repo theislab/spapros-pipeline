@@ -28,6 +28,4 @@ jobs:
       - name: Run Example
         run: |
             chmod +x run.sh
-            pwd
-            ls -la
-            
+            ./run.sh
