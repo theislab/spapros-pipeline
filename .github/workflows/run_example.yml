@@ -11,6 +11,7 @@ jobs:
         shell: bash -l {0}
     steps:
       - uses: actions/checkout@v2
+
       - uses: conda-incubator/setup-miniconda@v2
         with:
           python-version: 3.9
@@ -27,4 +28,6 @@ jobs:
       - name: Run Example
         run: |
             chmod +x run.sh
-            ./run.sh
+            pwd
+            ls -la
+            
