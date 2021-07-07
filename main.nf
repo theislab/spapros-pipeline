@@ -102,7 +102,7 @@ process Shared_Results {
     file markers from ch_markers
 
     output:
-    file 'evaluation/references/small_data_cluster_similarity.csv' into ch_cluster_similarities
+    file 'evaluation/references/*.csv' into ch_shared_results
 
     script:
     """
@@ -111,15 +111,14 @@ process Shared_Results {
 }
 
 
-// output file: results_dir+f"references/{dataset_params["name"]}_cluster_similarity.csv"
-
- /*
+/*
  * STEP 2 - Evaluate all specified gene sets
- */
- 
- /*
+*/
+
+
+/*
  * STEP 3 - Calculate summary statistics
- */
+*/
 
 
 /*
