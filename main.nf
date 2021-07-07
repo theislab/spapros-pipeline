@@ -84,16 +84,16 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 
 // Channel setups
 ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
-ch_adata.into { shared_adata; probesets_cs_adata; probesets_knn_adata }
+ch_adata.into { shared_adata; probesets_cs_adata; probesets_knn_adata; probesets_fclfs_adata }
 
 ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
-ch_parameters.into { shared_parameters; probesets_cs_parameters; probesets_knn_parameters }
+ch_parameters.into { shared_parameters; probesets_cs_parameters; probesets_knn_parameters; probesets_fclfs_parameters }
 
 ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
-ch_probeset.into { shared_probeset; probesets_cs_probeset; probesets_knn_probeset }
+ch_probeset.into { shared_probeset; probesets_cs_probeset; probesets_knn_probeset; probesets_fclfs_probeset }
 
 ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
-ch_markers.into { shared_markers; probesets_cs_markers; probesets_knn_markers }
+ch_markers.into { shared_markers; probesets_cs_markers; probesets_knn_markers; probesets_fclfs_markers }
 
 /*
  * STEP 1 - Calculate shared results
@@ -124,14 +124,14 @@ process Shared_Results {
     """
 }
 
-
 /*
- * STEP 2.1 - Evaluate all specified gene sets
+ * STEP 2 - Evaluate all specified gene sets
  */
-
 probeset_ids = params.probeset_ids?.tokenize(',')
 
-
+/*
+ * STEP 2.1 - Evaluate probesets based on cluster similarity
+ */
 process Evaluate_Cluster_Similarity_Probesets {
     echo true
 
@@ -149,7 +149,67 @@ process Evaluate_Cluster_Similarity_Probesets {
 
     script:
     """
-    custom_evaluation_pipeline.py --step "pre_results" \\
+    custom_evaluation_pipeline.py --step "pre_results_cs" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
+
+/*
+ * STEP 2.2 - Evaluate probesets based on knn graph
+ */
+process Evaluate_KNN_Graph_Probesets {
+    echo true
+
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from probesets_knn_adata
+    file parameters from probesets_knn_parameters
+    file probeset from probesets_knn_probeset
+    file markers from probesets_knn_markers
+    each probesetid from probeset_ids
+
+    output:
+    file 'evaluation/knn_overlap/*.csv' into ch_knn_probesets
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "pre_results_knn" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
+
+/*
+ * STEP 2.3 - Evaluate probesets based on random forest classifier
+ */
+process Evaluate_Random_Forest_Classifier_Probesets {
+    echo true
+
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from probesets_fclfs_adata
+    file parameters from probesets_fclfs_parameters
+    file probeset from probesets_fclfs_probeset
+    file markers from probesets_fclfs_markers
+    each probesetid from probeset_ids
+
+    output:
+    file 'evaluation/forest_clfs/*.csv' into ch_fclfs_probesets
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "pre_results_fclfs" \\
                                   --adata ${adata} \\
                                   --parameters ${parameters} \\
                                   --probeset ${probeset} \\

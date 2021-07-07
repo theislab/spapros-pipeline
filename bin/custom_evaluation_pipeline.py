@@ -63,7 +63,7 @@ if args.step == "shared":
 ##############################################
 # 1.2 Compute probe set specific pre results #
 ##############################################
-if args.step == "pre_results":
+if "pre_results" in args.step:
    if args.probeset_id == "all":
       df = pd.read_csv(args.probeset, index_col=0)
       probesets = df.columns.to_list()
@@ -73,7 +73,21 @@ if args.step == "pre_results":
 
    if type(probesets) == str:
       probesets = [probesets]
+
+# Cluster Similarity
+if args.step == "pre_results_cs":
    for set_id in probesets:
          evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
          genes = get_genes(set_id)
          evaluator.evaluate_probeset(genes, set_id=set_id, pre_only=True)
+# KNN Graph
+elif args.step == "pre_results_knn":
+   for set_id in probesets:
+      evaluator = ProbesetEvaluator(adata, metrics=["knn_overlap"], **evaluator_kwargs)
+      genes = get_genes(set_id)
+      evaluator.evaluate_probeset(genes, set_id=set_id, pre_only=True)
+elif args.step == "pre_results_fclfs":
+   for set_id in probesets:
+      evaluator = ProbesetEvaluator(adata, metrics=["forest_clfs"], **evaluator_kwargs)
+      genes = get_genes(set_id)
+      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
