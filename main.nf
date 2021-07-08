@@ -84,16 +84,40 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 
 // Channel setups
 ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
-ch_adata.into { shared_adata; preresults_cs_adata; preresults_knn_adata; probesets_fclfs_adata }
+ch_adata.into { shared_adata;
+                preresults_cs_adata;
+                preresults_knn_adata;
+                probesets_fclfs_adata;
+                probesets_cs_adata;
+                probesets_knn_adata;
+                probesets_corr_adata }
 
 ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
-ch_parameters.into { shared_parameters; preresults_cs_parameters; preresults_knn_parameters; probesets_fclfs_parameters }
+ch_parameters.into { shared_parameters;
+                    preresults_cs_parameters;
+                    preresults_knn_parameters;
+                    probesets_fclfs_parameters;
+                    probesets_cs_parameters;
+                    probesets_knn_parameters;
+                    probesets_corr_parameters }
 
 ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
-ch_probeset.into { shared_probeset; preresults_cs_probeset; preresults_knn_probeset; probesets_fclfs_probeset }
+ch_probeset.into { shared_probeset;
+                    preresults_cs_probeset; 
+                    preresults_knn_probeset; 
+                    probesets_fclfs_probeset; 
+                    probesets_cs_probeset;
+                    probesets_knn_probeset;
+                    probesets_corr_probeset }
 
 ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
-ch_markers.into { shared_markers; preresults_cs_markers; preresults_knn_markers; probesets_fclfs_markers }
+ch_markers.into { shared_markers;
+                  preresults_cs_markers; 
+                  preresults_knn_markers; 
+                  probesets_fclfs_markers; 
+                  probesets_cs_markers;
+                  probesets_knn_markers;
+                  probesets_corr_markers; }
 
 /*
  * STEP 1 - Calculate shared results
@@ -145,7 +169,7 @@ process Preresults_Cluster_Similarity_Probesets {
     each probesetid from probeset_ids
 
     output:
-    file 'evaluation/cluster_similarity/*.csv' into ch_cs_probesets
+    file 'evaluation/cluster_similarity/*.csv' into ch_cs_preresults
 
     script:
     """
@@ -175,7 +199,7 @@ process Preresults_KNN_Graph_Probesets {
     each probesetid from probeset_ids
 
     output:
-    file 'evaluation/knn_overlap/*.csv' into ch_knn_probesets
+    file 'evaluation/knn_overlap/*.csv' into ch_knn_preresults
 
     script:
     """
@@ -191,7 +215,7 @@ process Preresults_KNN_Graph_Probesets {
 
 /*
  * STEP 3.1 - Evaluate probesets based on random forest classifier
- */
+*/
 process Evaluate_Random_Forest_Classifier_Probesets {
     echo true
 
@@ -218,6 +242,104 @@ process Evaluate_Random_Forest_Classifier_Probesets {
                                   --results_dir "evaluation"
     """
 }
+
+
+/*
+ * STEP 3.2 - Evaluate probesets based on cluster similarity
+ */
+process Evaluate_Cluster_Similarity_Probesets {
+    echo true
+
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from probesets_cs_adata
+    file parameters from probesets_cs_parameters
+    file probeset from probesets_cs_probeset
+    file markers from probesets_cs_markers
+    each probesetid from probeset_ids
+
+    output:
+    file 'evaluation/cluster_similarity/*.csv' into ch_cs_probesets
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "probeset_specific_cs" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
+
+/*
+ * STEP 3.3 - Evaluate probesets based on KNN Graph
+ */
+process Evaluate_KNN_Graph_Probesets {
+    echo true
+
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from probesets_knn_adata
+    file parameters from probesets_knn_parameters
+    file probeset from probesets_knn_probeset
+    file markers from probesets_knn_markers
+    each probesetid from probeset_ids
+
+    output:
+    file 'evaluation/knn_overlap/*.csv' into ch_knn_probesets
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "probeset_specific_knn" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
+
+/*
+ * STEP 3.4 - Evaluate probesets based on KNN Graph
+ */
+process Evaluate_Correlations_Probesets {
+    echo true
+
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from probesets_corr_adata
+    file parameters from probesets_corr_parameters
+    file probeset from probesets_corr_probeset
+    file markers from probesets_corr_markers
+    each probesetid from probeset_ids
+
+    output:
+    file 'evaluation/gene_corr/*.csv' into ch_gene_corr_probesets
+    file 'evaluation/marker_corr/*.csv' into ch_marker_corr_probesets
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "probeset_specific_corr" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
+
+
+
+
+
+
 
 /*
  * STEP 3 - Calculate summary statistics

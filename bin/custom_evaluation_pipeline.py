@@ -100,6 +100,14 @@ elif args.step == "probeset_specific_cs":
    evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
    for set_id in probesets:
       genes = get_genes(set_id)
-      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)   
-
-
+      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
+elif args.step == "probeset_specific_knn":
+   evaluator = ProbesetEvaluator(adata, metrics=["knn_overlap"], **evaluator_kwargs)
+   for set_id in probesets:
+      genes = get_genes(set_id)
+      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
+elif args.step == "probeset_specific_corr":
+   evaluator = ProbesetEvaluator(adata, metrics=["gene_corr", "marker_corr"], **evaluator_kwargs)
+   for set_id in probesets:
+      genes = get_genes(set_id)
+      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
