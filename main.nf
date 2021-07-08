@@ -84,16 +84,16 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 
 // Channel setups
 ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
-ch_adata.into { shared_adata; probesets_cs_adata; probesets_knn_adata; probesets_fclfs_adata }
+ch_adata.into { shared_adata; preresults_cs_adata; preresults_knn_adata; probesets_fclfs_adata }
 
 ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
-ch_parameters.into { shared_parameters; probesets_cs_parameters; probesets_knn_parameters; probesets_fclfs_parameters }
+ch_parameters.into { shared_parameters; preresults_cs_parameters; preresults_knn_parameters; probesets_fclfs_parameters }
 
 ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
-ch_probeset.into { shared_probeset; probesets_cs_probeset; probesets_knn_probeset; probesets_fclfs_probeset }
+ch_probeset.into { shared_probeset; preresults_cs_probeset; preresults_knn_probeset; probesets_fclfs_probeset }
 
 ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
-ch_markers.into { shared_markers; probesets_cs_markers; probesets_knn_markers; probesets_fclfs_markers }
+ch_markers.into { shared_markers; preresults_cs_markers; preresults_knn_markers; probesets_fclfs_markers }
 
 /*
  * STEP 1 - Calculate shared results
@@ -132,16 +132,16 @@ probeset_ids = params.probeset_ids?.tokenize(',')
 /*
  * STEP 2.1 - Evaluate probesets based on cluster similarity
  */
-process Evaluate_Cluster_Similarity_Probesets {
+process Preresults_Cluster_Similarity_Probesets {
     echo true
 
     publishDir "${params.outdir}/"
 
     input:
-    file adata from probesets_cs_adata
-    file parameters from probesets_cs_parameters
-    file probeset from probesets_cs_probeset
-    file markers from probesets_cs_markers
+    file adata from preresults_cs_adata
+    file parameters from preresults_cs_parameters
+    file probeset from preresults_cs_probeset
+    file markers from preresults_cs_markers
     each probesetid from probeset_ids
 
     output:
@@ -162,16 +162,16 @@ process Evaluate_Cluster_Similarity_Probesets {
 /*
  * STEP 2.2 - Evaluate probesets based on knn graph
  */
-process Evaluate_KNN_Graph_Probesets {
+process Preresults_KNN_Graph_Probesets {
     echo true
 
     publishDir "${params.outdir}/"
 
     input:
-    file adata from probesets_knn_adata
-    file parameters from probesets_knn_parameters
-    file probeset from probesets_knn_probeset
-    file markers from probesets_knn_markers
+    file adata from preresults_knn_adata
+    file parameters from preresults_knn_parameters
+    file probeset from preresults_knn_probeset
+    file markers from preresults_knn_markers
     each probesetid from probeset_ids
 
     output:
@@ -190,7 +190,7 @@ process Evaluate_KNN_Graph_Probesets {
 }
 
 /*
- * STEP 2.3 - Evaluate probesets based on random forest classifier
+ * STEP 3.1 - Evaluate probesets based on random forest classifier
  */
 process Evaluate_Random_Forest_Classifier_Probesets {
     echo true
@@ -209,7 +209,7 @@ process Evaluate_Random_Forest_Classifier_Probesets {
 
     script:
     """
-    custom_evaluation_pipeline.py --step "pre_results_fclfs" \\
+    custom_evaluation_pipeline.py --step "probeset_specific_fclfs" \\
                                   --adata ${adata} \\
                                   --parameters ${parameters} \\
                                   --probeset ${probeset} \\

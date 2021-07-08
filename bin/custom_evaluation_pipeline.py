@@ -60,10 +60,8 @@ if args.step == "shared":
    evaluator.compute_or_load_shared_results()
 
 
-##############################################
-# 1.2 Compute probe set specific pre results #
-##############################################
-if "pre_results" in args.step:
+# Setup for probe set evaluation
+if "pre_results" in args.step or "probeset_specific" in args.step:
    if args.probeset_id == "all":
       df = pd.read_csv(args.probeset, index_col=0)
       probesets = df.columns.to_list()
@@ -73,7 +71,10 @@ if "pre_results" in args.step:
 
    if type(probesets) == str:
       probesets = [probesets]
-
+      
+##############################################
+# 1.2 Compute probe set specific pre results #
+##############################################
 # Cluster Similarity
 if args.step == "pre_results_cs":
    for set_id in probesets:
@@ -86,8 +87,19 @@ elif args.step == "pre_results_knn":
       evaluator = ProbesetEvaluator(adata, metrics=["knn_overlap"], **evaluator_kwargs)
       genes = get_genes(set_id)
       evaluator.evaluate_probeset(genes, set_id=set_id, pre_only=True)
-elif args.step == "pre_results_fclfs":
+
+##########################################
+# 2.1 Compute probe set specific results #
+##########################################
+if args.step == "probeset_specific_fclfs":
    for set_id in probesets:
       evaluator = ProbesetEvaluator(adata, metrics=["forest_clfs"], **evaluator_kwargs)
       genes = get_genes(set_id)
       evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
+elif args.step == "probeset_specific_cs":
+   evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
+   for set_id in probesets:
+      genes = get_genes(set_id)
+      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)   
+
+
