@@ -85,39 +85,35 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 // Channel setups
 ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
 ch_adata.into { shared_adata;
-                preresults_cs_adata;
-                preresults_knn_adata;
                 probesets_fclfs_adata;
                 probesets_cs_adata;
                 probesets_knn_adata;
-                probesets_corr_adata }
+                probesets_corr_adata;
+                summary_adata }
 
 ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
 ch_parameters.into { shared_parameters;
-                    preresults_cs_parameters;
-                    preresults_knn_parameters;
                     probesets_fclfs_parameters;
                     probesets_cs_parameters;
                     probesets_knn_parameters;
-                    probesets_corr_parameters }
+                    probesets_corr_parameters;
+                    summary_parameters }
 
 ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
 ch_probeset.into { shared_probeset;
-                    preresults_cs_probeset; 
-                    preresults_knn_probeset; 
                     probesets_fclfs_probeset; 
                     probesets_cs_probeset;
                     probesets_knn_probeset;
-                    probesets_corr_probeset }
+                    probesets_corr_probeset;
+                    summary_probeset }
 
 ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
 ch_markers.into { shared_markers;
-                  preresults_cs_markers; 
-                  preresults_knn_markers; 
                   probesets_fclfs_markers; 
                   probesets_cs_markers;
                   probesets_knn_markers;
-                  probesets_corr_markers; }
+                  probesets_corr_markers;
+                  summary_markers }
 
 /*
  * STEP 1 - Calculate shared results
@@ -154,68 +150,8 @@ process Shared_Results {
 probeset_ids = params.probeset_ids?.tokenize(',')
 
 /*
- * STEP 2.1 - Evaluate probesets based on cluster similarity
- */
-process Preresults_Cluster_Similarity_Probesets {
-    echo true
+ * STEP 2.1 - Evaluate probesets based on random forest classifier
 
-    publishDir "${params.outdir}/"
-
-    input:
-    file adata from preresults_cs_adata
-    file parameters from preresults_cs_parameters
-    file probeset from preresults_cs_probeset
-    file markers from preresults_cs_markers
-    each probesetid from probeset_ids
-
-    output:
-    file 'evaluation/cluster_similarity/*.csv' into ch_cs_preresults
-
-    script:
-    """
-    custom_evaluation_pipeline.py --step "pre_results_cs" \\
-                                  --adata ${adata} \\
-                                  --parameters ${parameters} \\
-                                  --probeset ${probeset} \\
-                                  --probeset_id ${probesetid} \\
-                                  --markers ${markers} \\
-                                  --results_dir "evaluation"
-    """
-}
-
-/*
- * STEP 2.2 - Evaluate probesets based on knn graph
- */
-process Preresults_KNN_Graph_Probesets {
-    echo true
-
-    publishDir "${params.outdir}/"
-
-    input:
-    file adata from preresults_knn_adata
-    file parameters from preresults_knn_parameters
-    file probeset from preresults_knn_probeset
-    file markers from preresults_knn_markers
-    each probesetid from probeset_ids
-
-    output:
-    file 'evaluation/knn_overlap/*.csv' into ch_knn_preresults
-
-    script:
-    """
-    custom_evaluation_pipeline.py --step "pre_results_knn" \\
-                                  --adata ${adata} \\
-                                  --parameters ${parameters} \\
-                                  --probeset ${probeset} \\
-                                  --probeset_id ${probesetid} \\
-                                  --markers ${markers} \\
-                                  --results_dir "evaluation"
-    """
-}
-
-/*
- * STEP 3.1 - Evaluate probesets based on random forest classifier
-*/
 process Evaluate_Random_Forest_Classifier_Probesets {
     echo true
 
@@ -242,10 +178,10 @@ process Evaluate_Random_Forest_Classifier_Probesets {
                                   --results_dir "evaluation"
     """
 }
-
+*/
 
 /*
- * STEP 3.2 - Evaluate probesets based on cluster similarity
+ * STEP 2.2 - Evaluate probesets based on cluster similarity
  */
 process Evaluate_Cluster_Similarity_Probesets {
     echo true
@@ -275,7 +211,7 @@ process Evaluate_Cluster_Similarity_Probesets {
 }
 
 /*
- * STEP 3.3 - Evaluate probesets based on KNN Graph
+ * STEP 2.3 - Evaluate probesets based on KNN Graph
  */
 process Evaluate_KNN_Graph_Probesets {
     echo true
@@ -305,7 +241,7 @@ process Evaluate_KNN_Graph_Probesets {
 }
 
 /*
- * STEP 3.4 - Evaluate probesets based on KNN Graph
+ * STEP 2.4 - Evaluate probesets based on KNN Graph
  */
 process Evaluate_Correlations_Probesets {
     echo true
@@ -335,15 +271,43 @@ process Evaluate_Correlations_Probesets {
     """
 }
 
-
-
-
-
-
+cluster_similarity_results = ch_cs_probesets.collect()
+knn_results = ch_knn_probesets.collect()
+gene_corr_results = ch_gene_corr_probesets
+marker_corr_results = ch_marker_corr_probesets
+all_results = cluster_similarity_results.mix(knn_results, gene_corr_results, marker_corr_results).collect()
 
 /*
- * STEP 3 - Calculate summary statistics
- */
+ * STEP 4 - Calculate summary statistics
+*/
+process  Calculate_Summary_Statistics {
+    echo true
+
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from summary_adata
+    file parameters from summary_parameters
+    file probeset from summary_probeset
+    file markers from summary_markers
+    file all_results
+    val ids from params.probeset_ids
+
+    output:
+    file 'summary/*.csv' into ch_summary
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "summary_statistics" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${ids} \\
+                                  --markers ${markers} \\
+                                  --results_dir "summary" \\
+                                  --results $all_results
+    """
+}
 
 
 /*

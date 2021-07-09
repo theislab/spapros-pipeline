@@ -21,6 +21,7 @@ parser.add_argument("--probeset", type=str)
 parser.add_argument("--probeset_id", type=str)
 parser.add_argument("--markers", type=str)
 parser.add_argument("--results_dir", type=str)
+parser.add_argument("--results", type=str, nargs="*")
 args = parser.parse_args()
 
 adata = sc.read(args.adata)
@@ -47,7 +48,7 @@ evaluator_kwargs = dict(
 )
 
 ###############################
-#  1.1 Compute shared results #
+# 1 Compute shared results    #
 ###############################
 if args.step == "shared":
    evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
@@ -60,8 +61,10 @@ if args.step == "shared":
    evaluator.compute_or_load_shared_results()
 
 
-# Setup for probe set evaluation
-if "pre_results" in args.step or "probeset_specific" in args.step:
+##########################################
+# 2 Compute probe set specific results   #
+##########################################
+if "probeset_specific" in args.step:
    if args.probeset_id == "all":
       df = pd.read_csv(args.probeset, index_col=0)
       probesets = df.columns.to_list()
@@ -72,42 +75,48 @@ if "pre_results" in args.step or "probeset_specific" in args.step:
    if type(probesets) == str:
       probesets = [probesets]
       
-##############################################
-# 1.2 Compute probe set specific pre results #
-##############################################
-# Cluster Similarity
-if args.step == "pre_results_cs":
-   for set_id in probesets:
-         evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
+   if args.step == "probeset_specific_fclfs":
+      for set_id in probesets:
+         evaluator = ProbesetEvaluator(adata, metrics=["forest_clfs"], **evaluator_kwargs)
          genes = get_genes(set_id)
-         evaluator.evaluate_probeset(genes, set_id=set_id, pre_only=True)
-# KNN Graph
-elif args.step == "pre_results_knn":
-   for set_id in probesets:
+         evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
+   elif args.step == "probeset_specific_cs":
+      evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
+      for set_id in probesets:
+         genes = get_genes(set_id)
+         evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
+   elif args.step == "probeset_specific_knn":
       evaluator = ProbesetEvaluator(adata, metrics=["knn_overlap"], **evaluator_kwargs)
-      genes = get_genes(set_id)
-      evaluator.evaluate_probeset(genes, set_id=set_id, pre_only=True)
+      for set_id in probesets:
+         genes = get_genes(set_id)
+         evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
+   elif args.step == "probeset_specific_corr":
+      evaluator = ProbesetEvaluator(adata, metrics=["gene_corr", "marker_corr"], **evaluator_kwargs)
+      for set_id in probesets:
+         genes = get_genes(set_id)
+         evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
 
 ##########################################
-# 2.1 Compute probe set specific results #
+# 3 Compute summary statistics           #
 ##########################################
-if args.step == "probeset_specific_fclfs":
-   for set_id in probesets:
-      evaluator = ProbesetEvaluator(adata, metrics=["forest_clfs"], **evaluator_kwargs)
-      genes = get_genes(set_id)
-      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
-elif args.step == "probeset_specific_cs":
-   evaluator = ProbesetEvaluator(adata, metrics=["cluster_similarity"], **evaluator_kwargs)
-   for set_id in probesets:
-      genes = get_genes(set_id)
-      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
-elif args.step == "probeset_specific_knn":
-   evaluator = ProbesetEvaluator(adata, metrics=["knn_overlap"], **evaluator_kwargs)
-   for set_id in probesets:
-      genes = get_genes(set_id)
-      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
-elif args.step == "probeset_specific_corr":
-   evaluator = ProbesetEvaluator(adata, metrics=["gene_corr", "marker_corr"], **evaluator_kwargs)
-   for set_id in probesets:
-      genes = get_genes(set_id)
-      evaluator.evaluate_probeset(genes, set_id=set_id, update_summary=False)
+if args.step == "summary_statistics":
+   if args.probeset_id == "all":
+      df = pd.read_csv(args.probeset, index_col=0)
+      probesets = df.columns.to_list()
+      del df
+   else:
+      probesets = args.probeset_id
+
+   if type(probesets) == str:
+      probesets = probesets.split(",")
+
+   # remove all files that contain pre
+   filtered_results = list(filter(lambda result: "pre" not in result, args.results))
+
+   evaluator = ProbesetEvaluator(
+            adata,
+            metrics=["cluster_similarity", "knn_overlap", "forest_clfs", "gene_corr", "marker_corr"],
+            **evaluator_kwargs,
+   )
+   
+   evaluator.pipeline_summary_statistics(result_files = filtered_results, probeset_ids = probesets)
