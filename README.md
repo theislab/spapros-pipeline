@@ -6,7 +6,7 @@ This pipeline aims at providing a heavily parallelized equivalent to the [Spapro
 A runnable example is provided in the run.sh script. We will provide more details and documentation as the project progresses.
 Usage:
 
-    The typical command for running the pipeline is as follows:
+The typical command for running the pipeline is as follows:
 
 ```
     nextflow run . -profile conda --adata data/small_data_raw_counts.h5ad --parameters data/parameters.yml --probeset data/selections_genesets_1.csv --markers data/small_data_marker_list.csv --probeset_ids genesets_1_0,genesets_1_1
