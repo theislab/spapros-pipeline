@@ -219,6 +219,7 @@ process KNN_Overlap_Pre_results {
 
 /*
  * STEP 2.1 - Evaluate probesets based on random forest classifier
+ */
 
 process Evaluate_Random_Forest_Classifier_Probesets {
     publishDir "${params.outdir}/"
@@ -244,7 +245,7 @@ process Evaluate_Random_Forest_Classifier_Probesets {
                                   --results_dir "evaluation"
     """
 }
-*/
+
 
 /*
  * STEP 2.2 - Evaluate probesets based on cluster similarity
