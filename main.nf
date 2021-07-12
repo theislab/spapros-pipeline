@@ -7,17 +7,22 @@ def helpMessage() {
 
     The typical command for running the pipeline is as follows:
 
-    nextflow run theislab/spapros-pipeline --input 'sample_sheet.tsv'
+    nextflow run . -profile conda --adata data/small_data_raw_counts.h5ad --parameters data/parameters.yml --probeset data/selections_genesets_1.csv --markers data/small_data_marker_list.csv --probeset_ids genesets_1_0,genesets_1_1
 
     Mandatory arguments:
-      --input [file]                            Path to sample sheet (specifying raw or mzml files)
+      --adata [file]                            Path to h5ad file containing the single-cell data
+      --parameters [file]                       Path to a parameters file. See Spapros documentation
+      --probeset [file]                         Path to the selected probesets as determined by Spapros. See Spapros documentation.
+      --markers [file]                          Path to a file containing the marker genes
+      --probeset_ids [str]                      Comma separated list of probesets to evaluate
       -profile [str]                            Configuration profile to use. Can use multiple (comma separated)
                                                 Available: docker, singularity, test, awsbatch and more
-    Selection:
-      --peptide_min_length [int]                Minimum peptide length for filtering
 
     Evaluation:
-      --bla [int]                               Something
+      --run_cs [bool]                           Whether to run cluster similary evaluation (true)
+      --run_knn [bool]                          Whether to run KNN graph evaluation (true)
+      --run_rf [bool]                           Whether to run random forest evaluation (true)
+      --run_corr [bool]                         Whether to run correlation evaluation (true)
 
     Other options:
       --outdir [file]                           The output directory where the results will be saved
@@ -174,6 +179,9 @@ process Cluster_Similarity_Pre_results {
     output:
     file 'evaluation/cluster_similarity/*_pre.csv' into ch_pre_results_cs
 
+    when:
+    params.run_cs
+
     script:
     """
     custom_evaluation_pipeline.py --step "pre_results_cs" \\
@@ -198,6 +206,9 @@ process KNN_Overlap_Pre_results {
 
     output:
     file 'evaluation/knn_overlap/*_pre.csv' into ch_pre_results_knn
+
+    when:
+    params.run_knn
 
     script:
     """
@@ -234,6 +245,9 @@ process Evaluate_Random_Forest_Classifier_Probesets {
     output:
     file 'evaluation/forest_clfs/*.csv' into ch_fclfs_probesets
 
+    when:
+    params.run_rf
+
     script:
     """
     custom_evaluation_pipeline.py --step "probeset_specific_fclfs" \\
@@ -267,6 +281,9 @@ process Evaluate_Cluster_Similarity_Probesets {
     output:
     file 'evaluation/cluster_similarity/*.csv' into ch_cs_probesets
 
+    when:
+    params.run_cs
+
     script:
     """
     custom_evaluation_pipeline.py --step "probeset_specific_cs" \\
@@ -298,6 +315,9 @@ process Evaluate_KNN_Graph_Probesets {
 
     output:
     file 'evaluation/knn_overlap/*.csv' into ch_knn_probesets
+
+    when:
+    params.run_knn
 
     script:
     """
@@ -332,6 +352,9 @@ process Evaluate_Correlations_Probesets {
     file 'evaluation/gene_corr/*.csv' into ch_gene_corr_probesets
     file 'evaluation/marker_corr/*.csv' into ch_marker_corr_probesets
 
+    when:
+    params.run_corr
+
     script:
     """
     custom_evaluation_pipeline.py --step "probeset_specific_corr" \\
@@ -345,11 +368,17 @@ process Evaluate_Correlations_Probesets {
     """
 }
 
+cluster_similarity_results = Channel.empty()
 cluster_similarity_results = ch_cs_probesets.collect()
+knn_results = Channel.empty()
 knn_results = ch_knn_probesets.collect()
+gene_corr_results = Channel.empty()
 gene_corr_results = ch_gene_corr_probesets
+marker_corr_results = Channel.empty()
 marker_corr_results = ch_marker_corr_probesets
+rf_results = Channel.empty()
 rf_results = ch_fclfs_probesets
+all_results = Channel.empty()
 all_results = cluster_similarity_results.mix(knn_results, gene_corr_results, marker_corr_results, rf_results).collect()
 
 /*
