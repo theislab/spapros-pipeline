@@ -174,6 +174,9 @@ process Cluster_Similarity_Pre_results {
     output:
     file 'evaluation/cluster_similarity/*_pre.csv' into ch_pre_results_cs
 
+    when:
+    params.run_cs
+
     script:
     """
     custom_evaluation_pipeline.py --step "pre_results_cs" \\
@@ -198,6 +201,9 @@ process KNN_Overlap_Pre_results {
 
     output:
     file 'evaluation/knn_overlap/*_pre.csv' into ch_pre_results_knn
+
+    when:
+    params.run_knn
 
     script:
     """
@@ -234,6 +240,9 @@ process Evaluate_Random_Forest_Classifier_Probesets {
     output:
     file 'evaluation/forest_clfs/*.csv' into ch_fclfs_probesets
 
+    when:
+    params.run_rf
+
     script:
     """
     custom_evaluation_pipeline.py --step "probeset_specific_fclfs" \\
@@ -267,6 +276,9 @@ process Evaluate_Cluster_Similarity_Probesets {
     output:
     file 'evaluation/cluster_similarity/*.csv' into ch_cs_probesets
 
+    when:
+    params.run_cs
+
     script:
     """
     custom_evaluation_pipeline.py --step "probeset_specific_cs" \\
@@ -298,6 +310,9 @@ process Evaluate_KNN_Graph_Probesets {
 
     output:
     file 'evaluation/knn_overlap/*.csv' into ch_knn_probesets
+
+    when:
+    params.run_knn
 
     script:
     """
@@ -332,6 +347,9 @@ process Evaluate_Correlations_Probesets {
     file 'evaluation/gene_corr/*.csv' into ch_gene_corr_probesets
     file 'evaluation/marker_corr/*.csv' into ch_marker_corr_probesets
 
+    when:
+    params.run_corr
+
     script:
     """
     custom_evaluation_pipeline.py --step "probeset_specific_corr" \\
@@ -345,11 +363,17 @@ process Evaluate_Correlations_Probesets {
     """
 }
 
+cluster_similarity_results = Channel.empty()
 cluster_similarity_results = ch_cs_probesets.collect()
+knn_results = Channel.empty()
 knn_results = ch_knn_probesets.collect()
+gene_corr_results = Channel.empty()
 gene_corr_results = ch_gene_corr_probesets
+marker_corr_results = Channel.empty()
 marker_corr_results = ch_marker_corr_probesets
+rf_results = Channel.empty()
 rf_results = ch_fclfs_probesets
+all_results = Channel.empty()
 all_results = cluster_similarity_results.mix(knn_results, gene_corr_results, marker_corr_results, rf_results).collect()
 
 /*
