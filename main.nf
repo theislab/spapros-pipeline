@@ -349,7 +349,8 @@ cluster_similarity_results = ch_cs_probesets.collect()
 knn_results = ch_knn_probesets.collect()
 gene_corr_results = ch_gene_corr_probesets
 marker_corr_results = ch_marker_corr_probesets
-all_results = cluster_similarity_results.mix(knn_results, gene_corr_results, marker_corr_results).collect()
+rf_results = ch_fclfs_probesets
+all_results = cluster_similarity_results.mix(knn_results, gene_corr_results, marker_corr_results, rf_results).collect()
 
 /*
  * STEP 4 - Calculate summary statistics
