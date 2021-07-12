@@ -7,17 +7,22 @@ def helpMessage() {
 
     The typical command for running the pipeline is as follows:
 
-    nextflow run theislab/spapros-pipeline --input 'sample_sheet.tsv'
+    nextflow run . -profile conda --adata data/small_data_raw_counts.h5ad --parameters data/parameters.yml --probeset data/selections_genesets_1.csv --markers data/small_data_marker_list.csv --probeset_ids genesets_1_0,genesets_1_1
 
     Mandatory arguments:
-      --input [file]                            Path to sample sheet (specifying raw or mzml files)
+      --adata [file]                            Path to h5ad file containing the single-cell data
+      --parameters [file]                       Path to a parameters file. See Spapros documentation
+      --probeset [file]                         Path to the selected probesets as determined by Spapros. See Spapros documentation.
+      --markers [file]                          Path to a file containing the marker genes
+      --probeset_ids [str]                      Comma separated list of probesets to evaluate
       -profile [str]                            Configuration profile to use. Can use multiple (comma separated)
                                                 Available: docker, singularity, test, awsbatch and more
-    Selection:
-      --peptide_min_length [int]                Minimum peptide length for filtering
 
     Evaluation:
-      --bla [int]                               Something
+      --run_cs [bool]                           Whether to run cluster similary evaluation (true)
+      --run_knn [bool]                          Whether to run KNN graph evaluation (true)
+      --run_rf [bool]                           Whether to run random forest evaluation (true)
+      --run_corr [bool]                         Whether to run correlation evaluation (true)
 
     Other options:
       --outdir [file]                           The output directory where the results will be saved
