@@ -85,6 +85,8 @@ log.info "-\033[2m--------------------------------------------------\033[0m-"
 // Channel setups
 ch_adata = Channel.fromPath(params.adata, checkIfExists: true)
 ch_adata.into { shared_adata;
+                pre_results_cs_adata;
+                pre_results_knn_adata;
                 probesets_fclfs_adata;
                 probesets_cs_adata;
                 probesets_knn_adata;
@@ -93,6 +95,8 @@ ch_adata.into { shared_adata;
 
 ch_parameters = Channel.fromPath(params.parameters, checkIfExists: true)
 ch_parameters.into { shared_parameters;
+                    pre_results_cs_parameters;
+                    pre_results_knn_parameters;
                     probesets_fclfs_parameters;
                     probesets_cs_parameters;
                     probesets_knn_parameters;
@@ -100,7 +104,9 @@ ch_parameters.into { shared_parameters;
                     summary_parameters }
 
 ch_probeset = Channel.fromPath(params.probeset, checkIfExists: true)
-ch_probeset.into { shared_probeset;
+ch_probeset.into {  shared_probeset;
+                    pre_results_cs_probeset;
+                    pre_results_knn_probeset;
                     probesets_fclfs_probeset; 
                     probesets_cs_probeset;
                     probesets_knn_probeset;
@@ -108,20 +114,27 @@ ch_probeset.into { shared_probeset;
                     summary_probeset }
 
 ch_markers = Channel.fromPath(params.markers, checkIfExists: true)
-ch_markers.into { shared_markers;
-                  probesets_fclfs_markers; 
-                  probesets_cs_markers;
-                  probesets_knn_markers;
-                  probesets_corr_markers;
-                  summary_markers }
+ch_markers.into {   shared_markers;
+                    pre_results_cs_markers;
+                    pre_results_knn_markers;
+                    probesets_fclfs_markers; 
+                    probesets_cs_markers;
+                    probesets_knn_markers;
+                    probesets_corr_markers;
+                    summary_markers }
+
+probeset_ids = params.probeset_ids?.tokenize(',')
+
 
 /*
- * STEP 1 - Calculate shared results
+ * STEP 1 - Pre calculate shared and CS/KNN specific results
+ */
+
+/*
+ * STEP 1.1 - Calculate shared results
  */
 
 process Shared_Results {
-    echo true
-
     publishDir "${params.outdir}/"
 
     input:
@@ -131,7 +144,11 @@ process Shared_Results {
     file markers from shared_markers
 
     output:
-    file 'evaluation/references/*.csv' into ch_shared_results
+    file 'evaluation/references/*_cluster_similarity.csv' into ch_shared_results_cs
+    file 'evaluation/references/*_knn_overlap.csv' into ch_shared_results_knn
+    file 'evaluation/references/*_gene_corr.csv' into ch_shared_results_gene_corr
+    file 'evaluation/references/*_marker_corr.csv' into ch_shared_results_marker_corr
+
 
     script:
     """
@@ -144,10 +161,65 @@ process Shared_Results {
     """
 }
 
+process Cluster_Similarity_Pre_results {
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from pre_results_cs_adata
+    file parameters from pre_results_cs_parameters
+    file probeset from pre_results_cs_probeset
+    file markers from pre_results_cs_markers
+    each probesetid from probeset_ids
+
+    output:
+    file 'evaluation/cluster_similarity/*_pre.csv' into ch_pre_results_cs
+
+
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "pre_results_cs" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
+
+process KNN_Overlap_Pre_results {
+    publishDir "${params.outdir}/"
+
+    input:
+    file adata from pre_results_knn_adata
+    file parameters from pre_results_knn_parameters
+    file probeset from pre_results_knn_probeset
+    file markers from pre_results_knn_markers
+    each probesetid from probeset_ids
+
+    output:
+    file 'evaluation/knn_overlap/*_pre.csv' into ch_pre_results_knn
+
+
+
+    script:
+    """
+    custom_evaluation_pipeline.py --step "pre_results_knn" \\
+                                  --adata ${adata} \\
+                                  --parameters ${parameters} \\
+                                  --probeset ${probeset} \\
+                                  --probeset_id ${probesetid} \\
+                                  --markers ${markers} \\
+                                  --results_dir "evaluation"
+    """
+}
+
+
 /*
  * STEP 2 - Evaluate all specified gene sets
  */
-probeset_ids = params.probeset_ids?.tokenize(',')
+
 
 /*
  * STEP 2.1 - Evaluate probesets based on random forest classifier
@@ -193,6 +265,8 @@ process Evaluate_Cluster_Similarity_Probesets {
     file parameters from probesets_cs_parameters
     file probeset from probesets_cs_probeset
     file markers from probesets_cs_markers
+    file shared_results from ch_shared_results_cs
+    file pre_results from ch_pre_results_cs
     each probesetid from probeset_ids
 
     output:
@@ -223,6 +297,8 @@ process Evaluate_KNN_Graph_Probesets {
     file parameters from probesets_knn_parameters
     file probeset from probesets_knn_probeset
     file markers from probesets_knn_markers
+    file shared_results from ch_shared_results_knn
+    file pre_results from ch_pre_results_knn
     each probesetid from probeset_ids
 
     output:
@@ -241,7 +317,7 @@ process Evaluate_KNN_Graph_Probesets {
 }
 
 /*
- * STEP 2.4 - Evaluate probesets based on KNN Graph
+ * STEP 2.4 - Evaluate probesets based on Correlations
  */
 process Evaluate_Correlations_Probesets {
     echo true
@@ -253,6 +329,8 @@ process Evaluate_Correlations_Probesets {
     file parameters from probesets_corr_parameters
     file probeset from probesets_corr_probeset
     file markers from probesets_corr_markers
+    file shared_results_gene from ch_shared_results_gene_corr
+    file shared_results_marker from ch_shared_results_marker_corr
     each probesetid from probeset_ids
 
     output:
