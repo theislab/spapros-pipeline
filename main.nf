@@ -174,8 +174,6 @@ process Cluster_Similarity_Pre_results {
     output:
     file 'evaluation/cluster_similarity/*_pre.csv' into ch_pre_results_cs
 
-
-
     script:
     """
     custom_evaluation_pipeline.py --step "pre_results_cs" \\
@@ -200,8 +198,6 @@ process KNN_Overlap_Pre_results {
 
     output:
     file 'evaluation/knn_overlap/*_pre.csv' into ch_pre_results_knn
-
-
 
     script:
     """
@@ -278,6 +274,8 @@ process Evaluate_Cluster_Similarity_Probesets {
                                   --probeset ${probeset} \\
                                   --probeset_id ${probesetid} \\
                                   --markers ${markers} \\
+                                  --shared_results ${shared_results} \\
+                                  --specific_pre_results ${pre_results} \\
                                   --results_dir "evaluation"
     """
 }
@@ -308,6 +306,8 @@ process Evaluate_KNN_Graph_Probesets {
                                   --probeset ${probeset} \\
                                   --probeset_id ${probesetid} \\
                                   --markers ${markers} \\
+                                  --shared_results ${shared_results} \\
+                                  --specific_pre_results ${pre_results} \\
                                   --results_dir "evaluation"
     """
 }
@@ -339,6 +339,7 @@ process Evaluate_Correlations_Probesets {
                                   --probeset ${probeset} \\
                                   --probeset_id ${probesetid} \\
                                   --markers ${markers} \\
+                                  --shared_results ${shared_results_gene} ${shared_results_marker} \\
                                   --results_dir "evaluation"
     """
 }
