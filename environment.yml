@@ -6,5 +6,5 @@ channels:
 dependencies:
     - pip
     - pip:
-      - git+https://github.com/theislab/spapros.git@feature/pipeline_summary
+      - git+https://github.com/theislab/spapros.git@feature/pipeline
 

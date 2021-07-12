@@ -225,8 +225,6 @@ process KNN_Overlap_Pre_results {
  * STEP 2.1 - Evaluate probesets based on random forest classifier
 
 process Evaluate_Random_Forest_Classifier_Probesets {
-    echo true
-
     publishDir "${params.outdir}/"
 
     input:
@@ -288,8 +286,6 @@ process Evaluate_Cluster_Similarity_Probesets {
  * STEP 2.3 - Evaluate probesets based on KNN Graph
  */
 process Evaluate_KNN_Graph_Probesets {
-    echo true
-
     publishDir "${params.outdir}/"
 
     input:
@@ -320,8 +316,6 @@ process Evaluate_KNN_Graph_Probesets {
  * STEP 2.4 - Evaluate probesets based on Correlations
  */
 process Evaluate_Correlations_Probesets {
-    echo true
-
     publishDir "${params.outdir}/"
 
     input:
@@ -359,8 +353,6 @@ all_results = cluster_similarity_results.mix(knn_results, gene_corr_results, mar
  * STEP 4 - Calculate summary statistics
 */
 process  Calculate_Summary_Statistics {
-    echo true
-
     publishDir "${params.outdir}/"
 
     input:
