@@ -1,5 +1,8 @@
 [![Run Example](https://github.com/theislab/spapros-pipeline/actions/workflows/run_example.yml/badge.svg)](https://github.com/theislab/spapros-pipeline/actions/workflows/run_example.yml)
 
+Note that this is an older version of Spapros' probeset evaluation benchmarking pipeline. The new version can be found [here](https://github.com/theislab/spapros-smk)
+
+
 # Spapros-pipeline
 
 This pipeline aims at providing a heavily parallelized equivalent to the [Spapros](https://github.com/theislab/spapros) package for probeset selection.    
